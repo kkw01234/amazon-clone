@@ -50,15 +50,7 @@ export class Carousel {
         
         this.carouselList.style.transition = "0.5s"
         this.carouselList.style.transform = `translateX(${-this.status*this.imageWidth}rem)`;
-        if(this.status === 0){
-            this.status = 4;
-            this.carouselList.addEventListener("transitionend",()=>{
-                this.carouselList.style.transition = ``;
-                this.carouselList.style.transform = `translateX(${-this.status*this.imageWidth}rem)`;
-            })
-            
-        }
-       
+      
     }
     rightHandler() {
         this.status++;
