@@ -1,6 +1,15 @@
 .carousel-viewport{
    border : 0.1rem solid black;
    display : flex;
+   vertical-align : middle;
+   .arrow {
+       display: flex;
+       align-items: center;
+   }
+   .arrow-img {
+       width: 3rem;
+       height : 3rem;
+   }
 }
 ol {
    list-style:none;

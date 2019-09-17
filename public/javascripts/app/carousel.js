@@ -7,14 +7,15 @@ export class Carousel {
     }
     render() {
         return /*html*/`<div class="carousel-viewport">
-        <button class="button left-button">
-          왼쪽
-        </button>
-         <ol class="carousel-list">
+        <div class="arrow">
+        <img src="/images/forwardarrow.svg" class="arrow-img left-arrow">
+        </div>
+        <ol class="carousel-list">
         ${this.makeLi()}
          </ol>
-          <button class="button right-button">
-          오른쪽
+         <div class="arrow">
+          <img src="/images/backarrow.svg" class="arrow-img right-arrow">
+        </div>
         </button>
       </div>`
     }
@@ -26,8 +27,8 @@ export class Carousel {
         },"");
     }
     enrollEvent() {
-        const left = document.querySelector(".left-button");
-        const right = document.querySelector(".right-button");
+        const left = document.querySelector(".left-arrow");
+        const right = document.querySelector(".right-arrow");
         const carouselList = document.querySelector(".carousel-list");
         const carouseCards = document.querySelectorAll(".carousel-card");
         right.addEventListener("click", this.rightHandler.bind(this, {carouseCards}));

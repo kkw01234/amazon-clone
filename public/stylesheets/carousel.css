@@ -3,6 +3,21 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  vertical-align: middle;
+}
+
+.carousel-viewport .arrow {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.carousel-viewport .arrow-img {
+  width: 3rem;
+  height: 3rem;
 }
 
 ol {
