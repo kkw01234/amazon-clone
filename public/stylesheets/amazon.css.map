@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "AAEA,AAAA,SAAS,CAAA;EACL,MAAM,EAAE,kBAAkB;CAC7B",
+    "mappings": "",
     "sources": [
         "amazon.scss"
     ],

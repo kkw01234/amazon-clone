@@ -1,18 +1,21 @@
-import data from "./data.js";
 
 export class Carousel {
     constructor(cards) {
         this.cards = cards;
-        this.status = 0;
+        this.status = 1;
+        this.imageWidth = 12.8;
+        this.imageHeight = 0;
     }
     render() {
         return /*html*/`<div class="carousel-viewport">
         <div class="arrow">
         <img src="/images/forwardarrow.svg" class="arrow-img left-arrow">
         </div>
+        <div class="carousel-main">
         <ol class="carousel-list">
         ${this.makeLi()}
          </ol>
+         </div>
          <div class="arrow">
           <img src="/images/backarrow.svg" class="arrow-img right-arrow">
         </div>
@@ -20,51 +23,43 @@ export class Carousel {
       </div>`
     }
     makeLi(){
-
-        return this.cards.reduce((prev,curr,idx)=>{
-            prev +=/*html*/ `<li class="carousel-card ${idx} ${idx === 0 ? "show" : "hidden"}"><img src="${curr.image}"></li>`
+        let list = this.cards.reduce((prev,curr,idx)=>{
+            prev +=/*html*/ `<li class="carousel-card ${idx+1} ${idx === 0 ? "show" : "hidden"}"><img src="${curr.image}"></li>`
             return prev;
         },"");
+
+        return list;
     }
     enrollEvent() {
-        const left = document.querySelector(".left-arrow");
-        const right = document.querySelector(".right-arrow");
-        const carouselList = document.querySelector(".carousel-list");
-        const carouseCards = document.querySelectorAll(".carousel-card");
-        right.addEventListener("click", this.rightHandler.bind(this, {carouseCards}));
-        left.addEventListener("click", this.leftHandler.bind(this, {carouseCards}));
-        carouselList.addEventListener("transitionend", this.endTransitionHandler.bind(this));
-    }
-    leftHandler({carouseCards}) {
-        // console.log(this.status);
-       
-        const value = carouseCards[this.status];
-        this.status = this.status - 1 < 0 ? this.cards.length-1:this.status -1;
-        // const nextValue = carouseCards[this.status];
         
-        value.style.transition = "0.5s all"
-        value.style.transform = "translateX(-4rem)";
-        this.buttonclick = "left";
-      
+        this.left = document.querySelector(".left-arrow");
+        this.right = document.querySelector(".right-arrow");
+        this.carouselMain = document.querySelector(".carousel-main");
+        this.carouselList = document.querySelector(".carousel-list");
+        this.carouseCards = this.carouselList.children;
+        const lastCard = this.carouseCards[this.carouseCards.length-1];
+        const firstCard = this.carouseCards[0]
+        this.carouselList.appendChild(firstCard.cloneNode(true));
+        this.carouselList.insertBefore(lastCard.cloneNode(true),this.carouselList.firstChild);
+        this.right.addEventListener("click", this.rightHandler.bind(this));
+        this.left.addEventListener("click", this.leftHandler.bind(this));
+        this.carouselList.addEventListener("transitionend", this.endTransitionHandler.bind(this));
     }
-    rightHandler({carouseCards}) {
-        const value = carouseCards[this.status];
-        this.status = (this.status + 1) % this.cards.length;
-        value.style.transition = "0.5s all"
-        value.style.transform = "translateX(+4rem)";
-        this.buttonclick = "right";
+    leftHandler() {
+       
+        this.status++;
+        this.carouselList.style.transition = "0.5s"
+        this.carouselList.style.transform = `translateX(${this.status*this.imageWidth}rem)`;
+
+    }
+    rightHandler() {
+      
+        this.status--;
+        this.carouselList.style.transition = "0.5s"
+        this.carouselList.style.transform = `translateX(${this.status*this.imageWidth}rem)`;
     }
     endTransitionHandler(e){
-        const carouselList = document.querySelector(".carousel-list");
-        console.log(this.status);
-        const currentCard = e.target;
-        const nextCard = carouselList.children[this.status];
-        nextCard.classList.remove("hidden");
-        nextCard.classList.add("show");
-        currentCard.classList.remove("show");
-        currentCard.classList.add("hidden");
-        currentCard.style.transform = "";
-        currentCard.style.transition = "";
+        console.log(`${e.target.className} finished`);
     }
 }
 

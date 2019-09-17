@@ -1,38 +1,40 @@
 .carousel-viewport{
-   border : 0.1rem solid black;
-   display : flex;
-   vertical-align : middle;
+    width : 20rem;
+    height: 11rem;
+    border : 0.1rem solid black;
+    display : flex;
+    vertical-align : middle;
    .arrow {
        display: flex;
        align-items: center;
+       cursor: pointer;
    }
    .arrow-img {
        width: 3rem;
        height : 3rem;
    }
 }
-ol {
-   list-style:none;
-    display:inline;
+.carousel-main {
     padding : 0rem;
-    overflow : hidden;
+    overflow: hidden;
+    width : 12.8rem;
+    height : auto;
+  ol{
+    list-style:none;
+    display: flex;
+    padding : 0.1rem;
+    width : 180px;
+    height : auto;
+  }
   li {
-    display : inline-flex;
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
     border : 0;
     position : relative;
-    float: left;
-    z-index : -1;
     img{
-        position : relative;
-        overflow: hidden;
-        width: 20rem;
-        height: auto;
+      width : 12.8rem;
+      height : auto;
     }
   }
 }
-.hidden{
-  position : absolute;
-  display: none;
-}
+// .hidden{
+//     position: absolute;
+// }

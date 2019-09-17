@@ -1,4 +1,6 @@
 .carousel-viewport {
+  width: 20rem;
+  height: 11rem;
   border: 0.1rem solid black;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -13,6 +15,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  cursor: pointer;
 }
 
 .carousel-viewport .arrow-img {
@@ -20,34 +23,30 @@
   height: 3rem;
 }
 
-ol {
-  list-style: none;
-  display: inline;
+.carousel-main {
   padding: 0rem;
   overflow: hidden;
-}
-
-ol li {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  margin: 0 0 0 0;
-  padding: 0 0 0 0;
-  border: 0;
-  position: relative;
-  float: left;
-  z-index: -1;
-}
-
-ol li img {
-  position: relative;
-  overflow: hidden;
-  width: 20rem;
+  width: 12.8rem;
   height: auto;
 }
 
-.hidden {
-  position: absolute;
-  display: none;
+.carousel-main ol {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0.1rem;
+  width: 180px;
+  height: auto;
+}
+
+.carousel-main li {
+  border: 0;
+  position: relative;
+}
+
+.carousel-main li img {
+  width: 12.8rem;
+  height: auto;
 }
 /*# sourceMappingURL=carousel.css.map */
