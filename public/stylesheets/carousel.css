@@ -1,0 +1,30 @@
+.carousel-viewport {
+  border: 0.1rem solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+ol {
+  list-style: none;
+  display: inline;
+  padding: 0rem;
+  overflow: hidden;
+}
+
+ol li {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  border: 0;
+  position: relative;
+  float: left;
+  z-index: -1;
+}
+
+.hidden {
+  position: fixed;
+}
+/*# sourceMappingURL=carousel.css.map */
