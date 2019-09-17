@@ -1,9 +1,27 @@
 .sub-container{
     display:flex;
     border : 0.1rem solid black;
-    padding : 0.3rem;
+    padding : 2rem;
+    margin : 0.5rem;
+    align-items: center;
     .sub-right{
+        margin : 0.5rem;
         display: flex;
         flex-direction: column;
     }
+    .sub-title{
+        font-size : 2.5rem;
+        margin-bottom: 1rem;
+    }
+    .sub-content{
+        font-size: 1.5rem;
+    }
+    .sub-url{
+        font-weight: bold;
+        cursor: pointer;
+        :hover{
+            text-decoration: underline;    
+        }
+    }
+    
 }

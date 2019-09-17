@@ -5,6 +5,9 @@ export class Carousel {
         this.status = 1;
         this.imageWidth = 12.8;
         this.imageHeight = 0;
+        /**
+         *
+         */
     }
     render() {
         return /*html*/`<div class="carousel-viewport">
