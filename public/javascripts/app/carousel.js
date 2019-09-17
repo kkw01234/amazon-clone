@@ -30,7 +30,19 @@ export class Carousel {
         left.addEventListener("click", this.leftHandler.bind(this));
     }
     leftHandler() {
-
+        const carouselList = document.querySelector(".carousel-list");
+        const cards = document.querySelectorAll(".carousel-card");
+        
+        for (let i = 0; i < cards.length; i++) {
+            const value = cards[i];
+            if (value.classList.contains("show")) {
+                const nextValue = cards[(i - 1 < 0 ? cards.length -1 : i - 1)];
+                value.addEventListener("transitionend", this.endTransitionHandler.bind(this, {carouselList,value, nextValue, direction : "left"}));
+                value.style.transition = "0.5s all"
+                value.style.transform = "translateX(-4rem)";
+                break;
+            }
+        }
     }
     rightHandler() {
         const carouselList = document.querySelector(".carousel-list");
@@ -48,15 +60,19 @@ export class Carousel {
             }
         }
     }
-    endTransitionHandler({carouselList, value, nextValue}){
-        console.log(carouselList,value,nextValue);
+    endTransitionHandler({carouselList, value, nextValue,direction = "right"}){
+
         carouselList.removeChild(value);
         nextValue.classList.remove("hidden");
         nextValue.classList.add("show");
         value.classList.remove("show");
         value.classList.add("hidden");
-        value.style.transform = "translateX(0rem)"
-        carouselList.appendChild(value);
+        value.style.transform = "translateX(0rem)";
+        if(direction === "right"){
+            carouselList.appendChild(value);
+        }else
+            carouselList.insertBefore(value,carouselList.firstChild);
+       
     }
 }
 
