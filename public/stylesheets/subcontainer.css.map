@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,cAAc,CAAA;EACV,OAAO,EAAC,IAAI;EACZ,MAAM,EAAG,kBAAkB;EAC3B,OAAO,EAAG,MAAM;CAKnB;;AARD,AAII,cAJU,CAIV,UAAU,CAAA;EACN,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;CACzB",
+    "sources": [
+        "subcontainer.scss"
+    ],
+    "names": [],
+    "file": "subcontainer.css"
+}

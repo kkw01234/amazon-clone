@@ -19,7 +19,6 @@ export class Carousel {
          <div class="arrow">
           <img src="/images/backarrow.svg" class="arrow-img right-arrow">
         </div>
-        </button>
       </div>`
     }
     makeLi(){
@@ -31,7 +30,6 @@ export class Carousel {
         return list;
     }
     enrollEvent() {
-        
         this.left = document.querySelector(".left-arrow");
         this.right = document.querySelector(".right-arrow");
         this.carouselMain = document.querySelector(".carousel-main");
@@ -47,10 +45,8 @@ export class Carousel {
     }
     leftHandler() {
         this.status--;
-        
         this.carouselList.style.transition = "0.5s"
         this.carouselList.style.transform = `translateX(${-this.status*this.imageWidth}rem)`;
-      
     }
     rightHandler() {
         this.status++;

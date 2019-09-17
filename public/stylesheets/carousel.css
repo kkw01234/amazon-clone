@@ -1,7 +1,6 @@
 .carousel-viewport {
   width: 20rem;
   height: 11rem;
-  border: 0.1rem solid black;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
