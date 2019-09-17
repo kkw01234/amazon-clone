@@ -24,7 +24,15 @@ ol li {
   z-index: -1;
 }
 
+ol li img {
+  position: relative;
+  overflow: hidden;
+  width: 20rem;
+  height: auto;
+}
+
 .hidden {
-  position: fixed;
+  position: absolute;
+  display: none;
 }
 /*# sourceMappingURL=carousel.css.map */

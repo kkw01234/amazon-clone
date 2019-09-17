@@ -15,8 +15,15 @@ ol {
     position : relative;
     float: left;
     z-index : -1;
+    img{
+        position : relative;
+        overflow: hidden;
+        width: 20rem;
+        height: auto;
+    }
   }
 }
 .hidden{
-  position : fixed;
+  position : absolute;
+  display: none;
 }

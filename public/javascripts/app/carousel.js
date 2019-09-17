@@ -1,6 +1,9 @@
-export class Carousel {
-    constructor() {
+import data from "./data.js";
 
+export class Carousel {
+    constructor(cards) {
+        this.cards = cards;
+        this.status = 0;
     }
     render() {
         return /*html*/`<div class="carousel-viewport">
@@ -8,71 +11,59 @@ export class Carousel {
           왼쪽
         </button>
          <ol class="carousel-list">
-         <li class="carousel-card  1 show">
-           테스트1
-         </li>
-         <li class="carousel-card 2 hidden">
-           테스트2
-         </li>
-         <li class="carousel-card 3 hidden">
-           테스트3
-         </li>
+        ${this.makeLi()}
          </ol>
           <button class="button right-button">
           오른쪽
         </button>
-      </div>`;
+      </div>`
+    }
+    makeLi(){
+
+        return this.cards.reduce((prev,curr,idx)=>{
+            prev +=/*html*/ `<li class="carousel-card ${idx} ${idx === 0 ? "show" : "hidden"}"><img src="${curr.image}"></li>`
+            return prev;
+        },"");
     }
     enrollEvent() {
         const left = document.querySelector(".left-button");
         const right = document.querySelector(".right-button");
-        right.addEventListener("click", this.rightHandler.bind(this));
-        left.addEventListener("click", this.leftHandler.bind(this));
-    }
-    leftHandler() {
         const carouselList = document.querySelector(".carousel-list");
-        const cards = document.querySelectorAll(".carousel-card");
-        
-        for (let i = 0; i < cards.length; i++) {
-            const value = cards[i];
-            if (value.classList.contains("show")) {
-                const nextValue = cards[(i - 1 < 0 ? cards.length -1 : i - 1)];
-                value.addEventListener("transitionend", this.endTransitionHandler.bind(this, {carouselList,value, nextValue, direction : "left"}));
-                value.style.transition = "0.5s all"
-                value.style.transform = "translateX(-4rem)";
-                break;
-            }
-        }
+        const carouseCards = document.querySelectorAll(".carousel-card");
+        right.addEventListener("click", this.rightHandler.bind(this, {carouseCards}));
+        left.addEventListener("click", this.leftHandler.bind(this, {carouseCards}));
+        carouselList.addEventListener("transitionend", this.endTransitionHandler.bind(this));
     }
-    rightHandler() {
-        const carouselList = document.querySelector(".carousel-list");
-        const cards = document.querySelectorAll(".carousel-card");
-        
-        for (let i = 0; i < cards.length; i++) {
-            const value = cards[i];
-            if (value.classList.contains("show")) {
-                const nextValue = cards[(i + 1) % cards.length];
-                console.log(this);
-                value.addEventListener("transitionend", this.endTransitionHandler.bind(this, {carouselList,value, nextValue}));
-                value.style.transition = "0.5s all"
-                value.style.transform = "translateX(-4rem)";
-                break;
-            }
-        }
-    }
-    endTransitionHandler({carouselList, value, nextValue,direction = "right"}){
-
-        carouselList.removeChild(value);
-        nextValue.classList.remove("hidden");
-        nextValue.classList.add("show");
-        value.classList.remove("show");
-        value.classList.add("hidden");
-        value.style.transform = "translateX(0rem)";
-        if(direction === "right"){
-            carouselList.appendChild(value);
-        }else
-            carouselList.insertBefore(value,carouselList.firstChild);
+    leftHandler({carouseCards}) {
+        // console.log(this.status);
        
+        const value = carouseCards[this.status];
+        this.status = this.status - 1 < 0 ? this.cards.length-1:this.status -1;
+        // const nextValue = carouseCards[this.status];
+        
+        value.style.transition = "0.5s all"
+        value.style.transform = "translateX(-4rem)";
+        this.buttonclick = "left";
+      
+    }
+    rightHandler({carouseCards}) {
+        const value = carouseCards[this.status];
+        this.status = (this.status + 1) % this.cards.length;
+        value.style.transition = "0.5s all"
+        value.style.transform = "translateX(+4rem)";
+        this.buttonclick = "right";
+    }
+    endTransitionHandler(e){
+        const carouselList = document.querySelector(".carousel-list");
+        console.log(this.status);
+        const currentCard = e.target;
+        const nextCard = carouselList.children[this.status];
+        nextCard.classList.remove("hidden");
+        nextCard.classList.add("show");
+        currentCard.classList.remove("show");
+        currentCard.classList.add("hidden");
+        currentCard.style.transform = "";
+        currentCard.style.transition = "";
     }
 }
 
