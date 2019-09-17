@@ -24,7 +24,7 @@ export class Carousel {
     }
     makeLi(){
         let list = this.cards.reduce((prev,curr,idx)=>{
-            prev +=/*html*/ `<li class="carousel-card ${idx+1} ${idx === 0 ? "show" : "hidden"}"><img src="${curr.image}"></li>`
+            prev +=/*html*/ `<li class="carousel-card ${idx+1}"><img src="${curr.image}"></li>`
             return prev;
         },"");
 
@@ -46,20 +46,35 @@ export class Carousel {
         this.carouselList.addEventListener("transitionend", this.endTransitionHandler.bind(this));
     }
     leftHandler() {
-       
-        this.status++;
+        this.status--;
+        
         this.carouselList.style.transition = "0.5s"
-        this.carouselList.style.transform = `translateX(${this.status*this.imageWidth}rem)`;
-
+        this.carouselList.style.transform = `translateX(${-this.status*this.imageWidth}rem)`;
+        if(this.status === 0){
+            this.status = 4;
+            this.carouselList.addEventListener("transitionend",()=>{
+                this.carouselList.style.transition = ``;
+                this.carouselList.style.transform = `translateX(${-this.status*this.imageWidth}rem)`;
+            })
+            
+        }
+       
     }
     rightHandler() {
-      
-        this.status--;
+        this.status++;
         this.carouselList.style.transition = "0.5s"
-        this.carouselList.style.transform = `translateX(${this.status*this.imageWidth}rem)`;
+        this.carouselList.style.transform = `translateX(${-this.status*this.imageWidth}rem)`;
     }
     endTransitionHandler(e){
-        console.log(`${e.target.className} finished`);
+        if(this.status === 0 ){
+            this.status = this.cards.length-1;
+            this.carouselList.style.transition = ``;
+            this.carouselList.style.transform = `translateX(${-this.status*this.imageWidth}rem)`;
+        }else if(this.status === this.cards.length){
+            this.status = 0;
+            this.carouselList.style.transition = ``;
+            this.carouselList.style.transform = `translateX(${-this.status*this.imageWidth}rem)`;
+        }
     }
 }
 
