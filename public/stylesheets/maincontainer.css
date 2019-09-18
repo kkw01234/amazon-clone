@@ -1,16 +1,9 @@
-.main-container {
+.main-container .benefit-cards {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-}
-
-.main-container .benefit-cards {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin: 0 auto;
 }
 /*# sourceMappingURL=maincontainer.css.map */

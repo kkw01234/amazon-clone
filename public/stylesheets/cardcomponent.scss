@@ -4,17 +4,16 @@
     flex-direction: column;
     justify-content: flex-end;
     text-align: center;
-    width: 10rem;
-    height: 15rem;
-    background-position-x: -1.5rem;
-    background-position-y: -1rem;
-    background-size: 100rem;
+    width: 8rem;
+    height: 10rem;
+    background-position-x: 0.25rem;
+    background-position-y: 1rem;
+    background-size: 60rem;
     &.card-clicked{ /*모두 2배로*/
-        margin: -1.75rem;
-        // padding :-2rem;
-        width: 12.5rem;
-        height: 18.75rem;
-        background-size : 125rem;
+        margin: -1.5rem;
+        width: 12rem;
+        height: 15rem;
+        background-size : 90rem;
         z-index: 99;
         // transform: scale(1.25);
         .circle{
