@@ -46,6 +46,7 @@ export class Carousel {
         this.right = this.carouselViewPort.querySelector(".right-arrow");
         this.carouselMain = this.carouselViewPort.querySelector(".carousel-main");
         this.carouselList = this.carouselViewPort.querySelector(".carousel-list");
+
         this.carouselMain.style.width = this.width === 0 ? "auto" : this.width+"rem";
         // this.carouselList.style.height = this.height === 0 ? "auto" : this.height+"rem";
         this.carouselList.style.transform = `translateX(${this.width})`;
@@ -54,6 +55,7 @@ export class Carousel {
         const firstCard = this.carouseCards[0]
         this.carouselList.appendChild(firstCard.cloneNode(true));
         this.carouselList.insertBefore(lastCard.cloneNode(true),this.carouselList.firstChild);
+        this.carouselList.style.transform = `translateX(${-this.width}rem)`
         this.right.addEventListener("click", this.rightHandler.bind(this));
         this.left.addEventListener("click", this.leftHandler.bind(this));
         this.carouselList.addEventListener("transitionend", this.endTransitionHandler.bind(this));
@@ -73,6 +75,7 @@ export class Carousel {
         this.carouselList.style.transition = "0.5s"
         this.carouselList.style.transform = `translateX(${-this.status*this.width}rem)`;
     }
+     // transform : translateX(-12.8rem);
     endTransitionHandler(e){
         if(this.status === 0 ){
             this.status = this.cards.length;

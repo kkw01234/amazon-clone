@@ -18,7 +18,6 @@ $image-size : 12.8rem;
 .carousel-main {
     padding : 0rem;
     overflow: hidden;
-    // width : $image-size;
     height : auto;
   ol{
     list-style:none;
@@ -26,13 +25,13 @@ $image-size : 12.8rem;
     padding : 0.1rem;
     /*width : 180px*/
     height : auto;
-    transform : translateX(-12.8rem);
+    // transform : translateX(-12.8rem);
   }
   li {
     border : 0;
     position : relative;
     img{
-      width : $image-size;
+      // width : $image-size;
       height : auto;
     }
   }

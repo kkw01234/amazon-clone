@@ -34,8 +34,6 @@
   padding: 0.1rem;
   /*width : 180px*/
   height: auto;
-  -webkit-transform: translateX(-12.8rem);
-          transform: translateX(-12.8rem);
 }
 
 .carousel-main li {
@@ -44,7 +42,6 @@
 }
 
 .carousel-main li img {
-  width: 12.8rem;
   height: auto;
 }
 /*# sourceMappingURL=carousel.css.map */
