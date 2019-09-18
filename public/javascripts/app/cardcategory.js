@@ -7,20 +7,24 @@ export class CardCategory{
     }
     render(){
         return /*html*/`
-        <div class="main-card ${this.title.toLowerCase()}-card">
+        <div class="category-card ${this.title.toLowerCase()}-card">
             <div class="category-title">${this.title}</div>
-            <div class="category-content"></div>
+            <div class="category-content">${this.appendSmallCircle()}</div>
         </div>`;
     }
     
     appendSmallCircle(){
-        const maincontainer = document.querySelector(".category-content");
+        let circles = "";
         for(let i=0;i<this.count;i++){
-            maincontainer.insertAdjacentHTML("beforeend",`<div class="circle"></div>`);
+            circles += `<div class="circle ${this.title.toLowerCase()}-${i+1}"></div>`; 
         }
-        this.addEventListner();
+        return circles;
     }
     addEventListner(){
-
+        this.categoryCard = document.querySelector(`.${this.title.toLowerCase()}-card`);
+        this.categoryCard.addEventListener("click",this.clickHandler.bind(this));
+    }
+    clickHandler(e){
+        
     }
 }

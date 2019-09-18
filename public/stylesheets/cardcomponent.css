@@ -1,4 +1,6 @@
-.main-card {
+@charset "UTF-8";
+.category-card {
+  margin: 0.25rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -10,7 +12,6 @@
       -ms-flex-pack: end;
           justify-content: flex-end;
   text-align: center;
-  background-color: green;
   width: 10rem;
   height: 15rem;
   background-position-x: -1.5rem;
@@ -18,13 +19,22 @@
   background-size: 100rem;
 }
 
-.main-card .category-title {
+.category-card:hover {
+  /*모두 2배로*/
+  margin: -5rem;
+  width: 15rem;
+  height: 22.5rem;
+  background-size: 150rem;
+  z-index: 99;
+}
+
+.category-card .category-title {
   margin: 1rem;
   font-size: 1.5rem;
   color: white;
 }
 
-.main-card .category-content {
+.category-card .category-content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -33,15 +43,40 @@
           justify-content: center;
 }
 
-.main-card .circle {
-  margin: 0.2rem;
+.category-card .circle {
+  margin: 0.1rem;
+  background-color: gray;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 1rem;
+}
+
+.category-card .circle:hover {
   background-color: white;
-  width: 1rem;
-  height: 1rem;
-  border-radius: 2rem;
 }
 
 .ship-card {
   background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_A._CB513333159_.png);
+  background-color: blue;
+}
+
+.stream-card {
+  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_B._CB513285352_.png);
+  background-color: red;
+}
+
+.shop-card {
+  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_C._CB513285352_.png);
+  background-color: purple;
+}
+
+.read-card {
+  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_D._CB513285353_.png);
+  background-color: green;
+}
+
+.more-card {
+  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_E._CB513285352_.png);
+  background-color: orange;
 }
 /*# sourceMappingURL=cardcomponent.css.map */

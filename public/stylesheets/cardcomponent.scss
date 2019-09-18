@@ -1,14 +1,21 @@
-.main-card{
+.category-card{
+    margin : 0.25rem;
     display : flex;
     flex-direction: column;
     justify-content: flex-end;
     text-align: center;
-    background-color : green;
     width: 10rem;
     height: 15rem;
     background-position-x: -1.5rem;
     background-position-y: -1rem;
     background-size: 100rem;
+    &:hover{ /*모두 2배로*/
+        margin : -5rem;
+        width: 15rem;
+        height: 22.5rem;
+        background-size : 150rem;
+        z-index: 99;
+    }
     .category-title{
         margin : 1rem;
         font-size : 1.5rem;
@@ -19,14 +26,36 @@
         justify-content: center;
     }
     .circle{
-        margin : 0.2rem;
-        background-color: white;
-        width : 1rem;
-        height: 1rem;
-        border-radius: 2rem;
+        margin : 0.1rem;
+        background-color: gray;
+        width : 0.8rem;
+        height: 0.8rem;
+        border-radius: 1rem;
+        &:hover{
+            // border-radius: 1rem solid black;
+            background-color : white;
+        }
     }
+    
 
 }
 .ship-card{
     background-image : url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_A._CB513333159_.png);
+    background-color : blue;
+}
+.stream-card{
+    background-image : url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_B._CB513285352_.png);
+    background-color : red;
+}
+.shop-card{
+    background-image : url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_C._CB513285352_.png);
+    background-color : purple;
+}
+.read-card{
+    background-image : url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_D._CB513285353_.png);
+    background-color : green;
+}
+.more-card{
+    background-image : url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_E._CB513285352_.png);
+    background-color : orange;
 }

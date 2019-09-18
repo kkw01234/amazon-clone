@@ -1,6 +1,4 @@
 .carousel-viewport {
-  width: 20rem;
-  height: 11rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -25,7 +23,6 @@
 .carousel-main {
   padding: 0rem;
   overflow: hidden;
-  width: 12.8rem;
   height: auto;
 }
 
@@ -35,7 +32,7 @@
   display: -ms-flexbox;
   display: flex;
   padding: 0.1rem;
-  width: 180px;
+  /*width : 180px*/
   height: auto;
   -webkit-transform: translateX(-12.8rem);
           transform: translateX(-12.8rem);

@@ -1,7 +1,7 @@
 $image-size : 12.8rem;
 .carousel-viewport{
-    width : 20rem;
-    height: 11rem;
+    // width : 20rem;
+    // height: 11rem;
     // border : 0.1rem solid black;
     display : flex;
     vertical-align : middle;
@@ -18,13 +18,13 @@ $image-size : 12.8rem;
 .carousel-main {
     padding : 0rem;
     overflow: hidden;
-    width : $image-size;
+    // width : $image-size;
     height : auto;
   ol{
     list-style:none;
     display: flex;
     padding : 0.1rem;
-    width : 180px;
+    /*width : 180px*/
     height : auto;
     transform : translateX(-12.8rem);
   }
@@ -37,6 +37,3 @@ $image-size : 12.8rem;
     }
   }
 }
-// .hidden{
-//     position: absolute;
-// }

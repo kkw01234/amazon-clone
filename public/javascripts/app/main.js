@@ -3,17 +3,28 @@ import data from "./data.js";
 import {SubContainer} from "./subcontainer.js";
 import dummy from "./dummy.js";
 import {CardCategory} from "./cardcategory.js"
+import {MainContainer} from "./maincontainer.js";
 
 const root = {
     init(){
         const root = document.querySelector("#root");
-        // const cardcategory = new CardCategory({title:dummy.main[0].title,backgroundColor:"black", image : dummy.main[0].image,count:4})
-        // root.innerHTML = cardcategory.render();
-        // cardcategory.appendSmallCircle();
-        // 미니캐로셀 띄우는 부분
-        const carousel = new Carousel(data.Mini);
+       
+        root.innerHTML = "";
+        const cards = dummy.main.reduce((prev,curr)=>{
+            const cardcategory = new CardCategory({title:curr.title,backgroundColor:curr.backgroundColor,image:curr.image,count:curr.button});
+            // root.insertAdjacentHTML("beforeend",cardcategory.render());
+            // cardcategory.addEventListner();
+            prev.push(cardcategory);
+            return prev;
+        },[]);
+        const maincontainer = new MainContainer({cards});
+        root.insertAdjacentHTML("beforeend",maincontainer.render()); 
+        cards.forEach(value=>{
+            value.addEventListner();
+        });
+        const carousel = new Carousel({cards:dummy.Mini,width:12.8,height:0});
         const subContainer = new SubContainer({carousel,title:dummy.sub[0].title,content:dummy.sub[0].content,url:dummy.sub[0].url});
-        root.innerHTML = subContainer.render(); 
+        root.insertAdjacentHTML("beforeend",subContainer.render()); 
         carousel.enrollEvent();
     }
 }
