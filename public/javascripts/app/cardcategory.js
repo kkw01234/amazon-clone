@@ -26,8 +26,11 @@ export class CardCategory{
         this.categoryCard.addEventListener("click",this.clickHandler.bind(this));
         this.categoryContent.addEventListener("click",this.circleClickHandler.bind(this));
         this.defaultCircle();
+        
     }
     clickHandler(e){
+        
+        if(this.categoryCard.classList.contains("card-clicked")) return;
         const categoryCard = document.querySelectorAll('.category-card');
         categoryCard.forEach((value)=>{ //바꾸고싶은데
              value.classList.remove("card-clicked");
@@ -36,7 +39,6 @@ export class CardCategory{
         this.defaultCircle();
     }
     circleClickHandler(e){
-        console.log(this.categoryContent.childNodes)
         this.categoryContent.childNodes.forEach(value=>{
             if(e.target !== value){
                 value.classList.remove("circle-active");
