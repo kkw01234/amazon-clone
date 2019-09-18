@@ -6,7 +6,9 @@ export class Carousel {
         this.imageWidth = 12.8;
         this.imageHeight = 0;
         /**
-         *
+         * 좌우 방향 이미지
+         * makeLi를 유동적으로 바뀌게 수정
+         * li의 길의 설정
          */
     }
     render() {
