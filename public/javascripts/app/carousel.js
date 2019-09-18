@@ -31,6 +31,7 @@ export class Carousel {
             prev +=/*html*/ `<li class="carousel-card ${idx+1}"><img src="${curr.image}"></li>`
             return prev;
         },"");
+      
 
         return list;
     }
@@ -45,8 +46,12 @@ export class Carousel {
         this.carouselList.appendChild(firstCard.cloneNode(true));
         this.carouselList.insertBefore(lastCard.cloneNode(true),this.carouselList.firstChild);
         this.right.addEventListener("click", this.rightHandler.bind(this));
-        this.left.addEventListener("click", this.leftHandler.bind(this));
+        this.left.addEventListener("click", this.rightHandler.bind(this));
         this.carouselList.addEventListener("transitionend", this.endTransitionHandler.bind(this));
+        this.interval = setInterval(this.leftHandler.bind(this),1000*3);
+        this.carouselList.addEventListener('mouseover',()=>{clearInterval(this.interval)});
+        this.carouselList.addEventListener('mouseout',()=>{setInterval(this.rightHandler.bind(this),1000*3)});
+        
     }
     leftHandler() {
         this.status--;
@@ -60,7 +65,7 @@ export class Carousel {
     }
     endTransitionHandler(e){
         if(this.status === 0 ){
-            this.status = this.cards.length-1;
+            this.status = this.cards.length;
             this.carouselList.style.transition = ``;
             this.carouselList.style.transform = `translateX(${-this.status*this.imageWidth}rem)`;
         }else if(this.status === this.cards.length){
