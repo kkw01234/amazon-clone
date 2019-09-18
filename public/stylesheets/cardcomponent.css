@@ -1,0 +1,47 @@
+.main-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  text-align: center;
+  background-color: green;
+  width: 10rem;
+  height: 15rem;
+  background-position-x: -1.5rem;
+  background-position-y: -1rem;
+  background-size: 100rem;
+}
+
+.main-card .category-title {
+  margin: 1rem;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.main-card .category-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.main-card .circle {
+  margin: 0.2rem;
+  background-color: white;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 2rem;
+}
+
+.ship-card {
+  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_A._CB513333159_.png);
+}
+/*# sourceMappingURL=cardcomponent.css.map */
