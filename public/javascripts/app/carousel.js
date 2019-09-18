@@ -4,7 +4,8 @@ export class Carousel {
      * @constructor
      * @param {Array} cards carousel에 넣을 html을 가지고 있는 배열 ex : [{html:"<div></div>"}]
      */
-    constructor({cards,width = 0,height = 0}) {
+    constructor({cards,width = 0,height = 0,title = "none"}) {
+        this.title = title;
         this.cards = cards; 
         this.status = 1;
         this.width = width;
@@ -16,7 +17,7 @@ export class Carousel {
          */
     }
     render() {
-        return /*html*/`<div class="carousel-viewport">
+        return /*html*/`<div class="carousel-viewport carousel-${this.title.toLowerCase()}">
         <div class="arrow">
         <img src="/images/forwardarrow.svg" class="arrow-img left-arrow">
         </div>
@@ -40,11 +41,11 @@ export class Carousel {
         return list;
     }
     enrollEvent() {
-        this.carouselViewPort = document.querySelector(".carousel-viewport");
-        this.left = document.querySelector(".left-arrow");
-        this.right = document.querySelector(".right-arrow");
-        this.carouselMain = document.querySelector(".carousel-main");
-        this.carouselList = document.querySelector(".carousel-list");
+        this.carouselViewPort = document.querySelector(`.carousel-${this.title.toLowerCase()}`);
+        this.left = this.carouselViewPort.querySelector(".left-arrow");
+        this.right = this.carouselViewPort.querySelector(".right-arrow");
+        this.carouselMain = this.carouselViewPort.querySelector(".carousel-main");
+        this.carouselList = this.carouselViewPort.querySelector(".carousel-list");
         this.carouselMain.style.width = this.width === 0 ? "auto" : this.width+"rem";
         // this.carouselList.style.height = this.height === 0 ? "auto" : this.height+"rem";
         this.carouselList.style.transform = `translateX(${this.width})`;

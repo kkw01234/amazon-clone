@@ -20,10 +20,12 @@ const root = {
         cards.forEach(value=>{
             value.addEventListner();
         });
-        const carousel = new Carousel({cards:dummy.Mini,width:12.8,height:0});
-        const subContainer = new SubContainer({carousel,title:dummy.sub[0].title,content:dummy.sub[0].content,url:dummy.sub[0].url});
+        // const underCarousel = new Carousel({cards:["<div>test</div>"],width:200});
+        // root.insertAdjacentHTML("beforeend",underCarousel.render());
+        const miniCarousel = new Carousel({cards:dummy.Mini,width:12.8,height:0,title:"mini"});
+        const subContainer = new SubContainer({carousel:miniCarousel,title:dummy.sub[0].title,content:dummy.sub[0].content,url:dummy.sub[0].url});
         root.insertAdjacentHTML("beforeend",subContainer.render()); 
-        carousel.enrollEvent();
+        miniCarousel.enrollEvent();
     }
 }
 
