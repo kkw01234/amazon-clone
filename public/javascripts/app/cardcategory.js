@@ -20,7 +20,7 @@ export class CardCategory{
         }
         return circles;
     }
-    addEventListner(){
+    enrollEvent(){
         this.categoryCard = document.querySelector(`.${this.title.toLowerCase()}-card`);
         this.categoryContent = this.categoryCard.querySelector(".category-content");
         this.categoryCard.addEventListener("click",this.clickHandler.bind(this));

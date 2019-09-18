@@ -18,7 +18,7 @@ const root = {
         const maincontainer = new MainContainer({cards});
         root.insertAdjacentHTML("beforeend",maincontainer.render()); 
         cards.forEach(value=>{
-            value.addEventListner();
+            value.enrollEvent();
         });
         const underCarousel = new Carousel({cards:[{html:`<div>asdfsafsfsda</div>`},{html: `<div>test</div>`}],width:10});
         root.insertAdjacentHTML("beforeend",underCarousel.render());
