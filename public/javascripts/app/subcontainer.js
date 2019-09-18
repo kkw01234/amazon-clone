@@ -16,7 +16,7 @@ export class SubContainer{
                                     ${this.content}
                                 </div>
                                 <div class="sub-url">
-                                <p href="${this.url}">Explore Prime Video ></p>
+                                <a href="${this.url}">Explore Prime Video ></a>
                                 </div>
                             </div>
                         </div>`;
