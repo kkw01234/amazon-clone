@@ -1,7 +1,7 @@
 import {Carousel} from "./carousel.js";
-import data from "./data.js";
+import data from "./data/data.js";
 import {SubContainer} from "./subcontainer.js";
-import dummy from "./dummy.js";
+import dummy from "./data/dummy.js";
 import {CardCategory} from "./cardcategory.js"
 import {MainContainer} from "./maincontainer.js";
 
