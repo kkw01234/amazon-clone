@@ -12,8 +12,6 @@ const root = {
         root.innerHTML = "";
         const cards = dummy.main.reduce((prev,curr)=>{
             const cardcategory = new CardCategory({title:curr.title,backgroundColor:curr.backgroundColor,image:curr.image,count:curr.button});
-            // root.insertAdjacentHTML("beforeend",cardcategory.render());
-            // cardcategory.addEventListner();
             prev.push(cardcategory);
             return prev;
         },[]);

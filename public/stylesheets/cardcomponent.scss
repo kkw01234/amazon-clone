@@ -1,5 +1,5 @@
 .category-card{
-    margin : 0.25rem;
+    margin : 0.5rem;
     display : flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -9,12 +9,21 @@
     background-position-x: -1.5rem;
     background-position-y: -1rem;
     background-size: 100rem;
-    &:hover{ /*모두 2배로*/
-        margin : -5rem;
-        width: 15rem;
-        height: 22.5rem;
-        background-size : 150rem;
+    &.card-clicked{ /*모두 2배로*/
+        margin: -1.75rem;
+        // padding :-2rem;
+        width: 12.5rem;
+        height: 18.75rem;
+        background-size : 125rem;
         z-index: 99;
+        // transform: scale(1.25);
+        .circle{
+            display: block;
+            &.circle-active{
+                // border-radius: 1rem solid black;
+                background-color : white;
+            }
+        }
     }
     .category-title{
         margin : 1rem;
@@ -31,10 +40,8 @@
         width : 0.8rem;
         height: 0.8rem;
         border-radius: 1rem;
-        &:hover{
-            // border-radius: 1rem solid black;
-            background-color : white;
-        }
+        display : none;
+       
     }
     
 

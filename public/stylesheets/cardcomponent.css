@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .category-card {
-  margin: 0.25rem;
+  margin: 0.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -19,13 +19,21 @@
   background-size: 100rem;
 }
 
-.category-card:hover {
+.category-card.card-clicked {
   /*모두 2배로*/
-  margin: -5rem;
-  width: 15rem;
-  height: 22.5rem;
-  background-size: 150rem;
+  margin: -1.75rem;
+  width: 12.5rem;
+  height: 18.75rem;
+  background-size: 125rem;
   z-index: 99;
+}
+
+.category-card.card-clicked .circle {
+  display: block;
+}
+
+.category-card.card-clicked .circle.circle-active {
+  background-color: white;
 }
 
 .category-card .category-title {
@@ -49,10 +57,7 @@
   width: 0.8rem;
   height: 0.8rem;
   border-radius: 1rem;
-}
-
-.category-card .circle:hover {
-  background-color: white;
+  display: none;
 }
 
 .ship-card {

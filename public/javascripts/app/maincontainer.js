@@ -5,13 +5,16 @@ export class MainContainer{
     }
     render(){
         return /*html*/`<div class="main-container">
-                            <div class="benefit-cards">${this.insertCardCategory()}</div>
+                            <div>
+                                <div class="benefit-cards">${this.insertCardCategory()}</div>
+                            </div>
                         </div>`
     }
 
     insertCardCategory(){
-        const re = this.cards.reduce((prev,curr)=>{
-            prev += curr.render();
+        const re = this.cards.reduce((prev,curr,idx)=>{
+
+            prev += curr.render({idx});
             return prev;
         },"");
         return re;
