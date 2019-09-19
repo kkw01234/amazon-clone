@@ -1,7 +1,5 @@
 import { Carousel } from "./carousel.js";
-import data from "./data/data_rdb.js";
 import { SubContainer } from "./subcontainer.js";
-import dummy from "./data/dummy.js";
 import { CardCategory } from "./cardcategory.js"
 import { MainContainer } from "./maincontainer.js";
 import { UrlImage } from "./carouselsource/urlimage.js";
@@ -13,9 +11,9 @@ import { header } from "./header.js";
 const rootContainer = {
     root: document.querySelector("#root"),
     init() {
-
-        this.root.innerHTML = header.render();
+        this.root.innerHTML = "";
         this.carouselemitter = new EventEmitter();
+        console.time("start1");
         Promise.all([fetch("/data/maincard.json"), fetch("/data/bottomcarousel.json")]).then(async values => {
             await this.makeCardCategory(values[0]);
             await this.makeBottomCard(values[1]);
@@ -25,14 +23,11 @@ const rootContainer = {
                 await this.makeMiniCarousel(values[0]);
                 await this.makeSubContainer(values[1]);
             }).then(() => {
-                    this.root.innerHTML += this.maincontainer.render();
-                    this.root.innerHTML += this.subContainer.render();
-                    this.root.innerHTML += footer.render();
+                    this.render();
                     this.enrollEvent();
                 });
-                
         }).catch(err=>{
-
+            console.log(err);
         });
       
     },
@@ -92,7 +87,6 @@ const rootContainer = {
         this.root.insertAdjacentHTML("beforeend", this.maincontainer.render());
         this.root.insertAdjacentHTML("beforeend", this.subContainer.render());
         this.root.insertAdjacentHTML("beforeend", footer.render());
-        this.enrollEvent();
     },
     enrollEvent() {
         this.bottomCarousel.enrollEvent();
