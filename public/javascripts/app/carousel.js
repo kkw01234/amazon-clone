@@ -54,9 +54,6 @@ export class Carousel {
         this.right.addEventListener("click", this.rightHandler.bind(this));
         this.left.addEventListener("click", this.leftHandler.bind(this));
         this.carouselList.addEventListener("transitionend", this.endTransitionHandler.bind(this));
-        this.cards.forEach(value=>{
-            console.log(value);
-        });
         if(this.emitter)
             this.emitter.insertObject(this.moveCards.bind(this));
         // this.interval = setInterval(this.leftHandler.bind(this),1000*3);
@@ -70,9 +67,8 @@ export class Carousel {
         this.carouselList.style.transform = `translateX(${-this.status*this.width}rem)`;
     }
     rightHandler() {
-        if(this.stop) return;
         this.status++;
-        this.carouselList.style.transition = "0.5s"
+        this.carouselList.style.transition =  "0.5s"
         this.carouselList.style.transform = `translateX(${-this.status*this.width}rem)`;
     }
      // transform : translateX(-12.8rem);
@@ -87,9 +83,8 @@ export class Carousel {
             this.carouselList.style.transform = `translateX(${-this.status*this.width}rem)`;
         }
     }
-    moveCards(e){
-        console.log(e.target, this);
-        this.status = e.target.getAttribute("data-value");
+    moveCards(target){
+        this.status = target.getAttribute("data-value");
         this.carouselList.style.transition = "0.5s";
         this.carouselList.style.transform = `translateX(${-this.status*this.width}rem)`;
     }

@@ -51,7 +51,7 @@ export class CardCategory{
         });
         e.target.classList.add("circle-active");
         if(this.emitter)
-            this.emitter.notifyAll(e);
+            this.emitter.notifyAll(e.target);
     }
     defaultCircle(){
         this.categoryContent.childNodes.forEach(value=>{
