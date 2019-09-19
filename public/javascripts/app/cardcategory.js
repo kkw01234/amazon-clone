@@ -9,7 +9,7 @@ export class CardCategory{
     }
     render({idx}){
         return /*html*/`
-        <div class="category-card ${this.title.toLowerCase()}-card ${idx ? "": "card-clicked"}">
+        <div class="category-card ${this.title.toLowerCase()}-card ${idx ? "": "card-clicked"}" style="background-color:${this.backgroundColor}">
             <div class="category-title">${this.title}</div>
             <div class="category-content ${this.title.toLowerCase()}-content">${this.appendSmallCircle()}</div>
         </div>`;

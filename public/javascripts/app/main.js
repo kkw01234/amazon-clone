@@ -30,8 +30,6 @@ const root = {
             return prev;
         },[]);
         const maincontainer = new MainContainer({cards,bottomCarousel});
-        
-        
         const bottomcards = data.result.reduce((prev,curr,idx)=>{
             prev.push(new BottomCard({
                 className : curr.type,
