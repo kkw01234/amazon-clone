@@ -10,11 +10,7 @@ export class Carousel {
         this.status = 1;
         this.width = width;
         this.height = height;
-        /**
-         * 좌우 방향 이미지
-         * makeLi를 유동적으로 바뀌게 수정
-         * li의 길이 설정
-         */
+
     }
     render() {
         return /*html*/`<div class="carousel-viewport carousel-${this.title.toLowerCase()}">
@@ -46,7 +42,6 @@ export class Carousel {
         this.right = this.carouselViewPort.querySelector(".right-arrow");
         this.carouselMain = this.carouselViewPort.querySelector(".carousel-main");
         this.carouselList = this.carouselViewPort.querySelector(".carousel-list");
-        
         this.carouselMain.style.width = this.width === 0 ? "auto" : this.width+"rem";
         this.carouselList.style.transform = `translateX(${this.width})`;
         this.carouseCards = this.carouselList.children;
