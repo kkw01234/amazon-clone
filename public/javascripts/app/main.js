@@ -10,27 +10,28 @@ import {EventEmitter} from "../eventemitter/eventemitter";
 import {footer} from "./footer.js";
 import {header} from "./header.js";
 
-const root = {
+const rootContainer = {
+    root : document.querySelector("#root"),
     init(){
-        const root = document.querySelector("#root");
-        const carouselemitter = new EventEmitter();
-        const bottomCarousel = new Carousel({cards:[],width:50,emitter:carouselemitter});
+        this.root.innerHTML = "";
+        this.carouselemitter = new EventEmitter();
+        this.bottomCarousel = new Carousel({cards:[],width:50,emitter:this.carouselemitter,interval : false});
         let circleCount = 0;
-        const cards = dummy.main.reduce((prev,curr)=>{
+        this.cards = dummy.main.reduce((prev,curr)=>{
             const cardcategory = new CardCategory({
                                         title:curr.title,
                                         backgroundColor:curr.color,
                                         image:curr.image,
                                         count:curr.button,
                                         nowCount : circleCount,
-                                        emitter : carouselemitter
+                                        emitter : this.carouselemitter
                                         });
             circleCount +=curr.button;
             prev.push(cardcategory);
             return prev;
         },[]);
-        const maincontainer = new MainContainer({cards,bottomCarousel});
-        const bottomcards = data.result.reduce((prev,curr,idx)=>{
+        this.maincontainer = new MainContainer({cards:this.cards,bottomCarousel:this.bottomCarousel});
+        this.bottomcards = data.result.reduce((prev,curr,idx)=>{
             prev.push(new BottomCard({
                 className : curr.type,
                 title : curr.title,
@@ -44,28 +45,31 @@ const root = {
             }));
             return prev;
         },[]);
-        bottomCarousel.cards = bottomcards;
-
-        root.innerHTML = "";
-        root.insertAdjacentHTML("beforeend",maincontainer.render()); 
-        bottomCarousel.enrollEvent();
-        cards.forEach(value=>{
-            value.enrollEvent();
-        });
-        // const bottomContent = new BottomCard({className:"test",title:data.Ship[0].title,content:data.Ship[0].body,image:data.Ship[0].image,width:50});
-        // const bottomContent2 = new BottomCard({className:"test",title:data.Ship[1].title,content:data.Ship[1].body,image:data.Ship[1].image,width:50});
+        this.bottomCarousel.cards = this.bottomcards;
         const images = dummy.Mini.reduce((prev,curr)=>{
             prev.push(new UrlImage(curr.image));
             return prev;
         },[]);
-        const miniCarousel = new Carousel({cards:images,width:11.25,height:0,title:"mini"});
-        const subContainer = new SubContainer({carousel:miniCarousel,title:dummy.sub[0].title,content:dummy.sub[0].content,url:dummy.sub[0].url});
-        root.insertAdjacentHTML("afterbegin",header.render());
-        root.insertAdjacentHTML("beforeend",subContainer.render()); 
-        root.insertAdjacentHTML("beforeend",footer.render());
-        miniCarousel.enrollEvent();
+        this.miniCarousel = new Carousel({cards:images,width:11.25,height:0,title:"mini",interval:true});
+        this.subContainer = new SubContainer({carousel:this.miniCarousel,title:dummy.sub[0].title,content:dummy.sub[0].content,url:dummy.sub[0].url});
+        
         // bottomCarousel.enrollEvent();
+    },
+    render(){
+        this.root.insertAdjacentHTML("beforeend",this.maincontainer.render()); 
+        this.root.insertAdjacentHTML("afterbegin",header.render());
+        this.root.insertAdjacentHTML("beforeend",this.subContainer.render()); 
+        this.root.insertAdjacentHTML("beforeend",footer.render());
+        this.enrollEvent();
+    },
+    enrollEvent(){
+        this.bottomCarousel.enrollEvent();
+        this.miniCarousel.enrollEvent();
+        this.cards.forEach(value=>{
+            value.enrollEvent();
+        });
     }
 }
 
-root.init();
+rootContainer.init();
+rootContainer.render();

@@ -4,14 +4,14 @@ export class Carousel {
      * @constructor
      * @param {Array} cards carousel에 넣을 html을 가지고 있는 배열 ex : [{html:"<div></div>"}]
      */
-    constructor({cards,width = 0,height = 0,title = "none",emitter}) {
+    constructor({cards,width = 0,height = 0,title = "none",emitter,interval = false}) {
         this.title = title;
         this.cards = cards; 
         this.status = 1;
         this.width = width;
         this.height = height;
         this.emitter = emitter;
-
+        this.interval = interval;
     }
     render() {
         return /*html*/`<div class="carousel-viewport carousel-${this.title.toLowerCase()}">
@@ -56,10 +56,12 @@ export class Carousel {
         this.carouselList.addEventListener("transitionend", this.endTransitionHandler.bind(this));
         if(this.emitter)
             this.emitter.insertEvent("moveCards",this.moveCards.bind(this));
-        // this.interval = setInterval(this.leftHandler.bind(this),1000*3);
-        // this.carouselViewPort.addEventListener('mouseover',()=>{clearInterval(this.interval)});
-        // this.carouselViewPort.addEventListener('mouseout',()=>{this.interval = setInterval(this.leftHandler.bind(this),1000*3)});
-        
+        if(this.interval){
+            this.interval = setInterval(this.rightHandler.bind(this),1000*3);
+            this.carouselViewPort.addEventListener('mouseover',()=>{clearInterval(this.interval)});
+            this.carouselViewPort.addEventListener('mouseout',()=>{this.interval = setInterval(this.rightHandler.bind(this),1000*3)});    
+        }
+             
     }
     leftHandler() {
         this.status--;
@@ -73,7 +75,6 @@ export class Carousel {
         this.status++;
         this.carouselList.style.transition =  "0.5s";
         this.carouselList.style.transform = `translateX(${-this.status*this.width}rem)`;
-        console.log(this.status);
         if(this.emitter)
             this.emitter.notify(`moveMainCard-${this.carouseCards[this.status > this.cards.length ? 0 : this.status-1].getAttribute("data-type")}`,{target:this.carouseCards[this.status > this.cards.length ? 0 : this.status-1]});
     }
