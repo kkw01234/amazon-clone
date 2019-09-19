@@ -10,7 +10,6 @@ import {EventEmitter} from "../eventemitter/eventemitter";
 
 const root = {
     init(){
-      
         const root = document.querySelector("#root");
         const carouselemitter = new EventEmitter();
         const bottomCarousel = new Carousel({cards:[],width:50,emitter:carouselemitter});
@@ -33,7 +32,7 @@ const root = {
         
         const bottomcards = data.result.reduce((prev,curr,idx)=>{
             prev.push(new BottomCard({
-                className : idx+1,
+                className : curr.type,
                 title : curr.head,
                 content : curr.body,
                 image : curr.image,

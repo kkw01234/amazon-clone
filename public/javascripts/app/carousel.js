@@ -30,7 +30,7 @@ export class Carousel {
     }
     makeLi(){
         let list = this.cards.reduce((prev,curr,idx)=>{
-            prev +=/*html*/ `<li class="carousel-card ${idx+1}">
+            prev +=/*html*/ `<li class="carousel-card  ${idx+1}" data-type="${curr.className}" data-value="${idx+1}">
                                 ${curr.render()}
                             </li>`;
             return prev;
@@ -45,7 +45,7 @@ export class Carousel {
         this.carouselList = this.carouselViewPort.querySelector(".carousel-list");
         this.carouselMain.style.width = this.width === 0 ? "auto" : this.width+"rem";
         this.carouselList.style.transform = `translateX(${this.width})`;
-        this.carouseCards = this.carouselList.children;
+        this.carouseCards = this.carouselList.querySelectorAll(".carousel-card");
         const lastCard = this.carouseCards[this.carouseCards.length-1];
         const firstCard = this.carouseCards[0]
         this.carouselList.appendChild(firstCard.cloneNode(true));
@@ -55,23 +55,29 @@ export class Carousel {
         this.left.addEventListener("click", this.leftHandler.bind(this));
         this.carouselList.addEventListener("transitionend", this.endTransitionHandler.bind(this));
         if(this.emitter)
-            this.emitter.insertObject(this.moveCards.bind(this));
+            this.emitter.insertEvent("moveCards",this.moveCards.bind(this));
         // this.interval = setInterval(this.leftHandler.bind(this),1000*3);
         // this.carouselViewPort.addEventListener('mouseover',()=>{clearInterval(this.interval)});
-        // this.carouselViewPort.addEventListener('mouseout',()=>{this.interval = setInterval(this.rightHandler.bind(this),1000*3)});
+        // this.carouselViewPort.addEventListener('mouseout',()=>{this.interval = setInterval(this.leftHandler.bind(this),1000*3)});
         
     }
     leftHandler() {
         this.status--;
         this.carouselList.style.transition = "0.5s"
         this.carouselList.style.transform = `translateX(${-this.status*this.width}rem)`;
+        console.log(this.status);
+        if(this.emitter)
+        this.emitter.notify(`moveMainCard-${this.carouseCards[this.status ? this.status-1 : this.cards.length-1].getAttribute("data-type")}`,{target:this.carouseCards[this.status ? this.status-1 : this.cards.length-1]});
+    
     }
     rightHandler() {
         this.status++;
-        this.carouselList.style.transition =  "0.5s"
+        this.carouselList.style.transition =  "0.5s";
         this.carouselList.style.transform = `translateX(${-this.status*this.width}rem)`;
+        console.log(this.status);
+        if(this.emitter)
+            this.emitter.notify(`moveMainCard-${this.carouseCards[this.status > this.cards.length ? 0 : this.status-1].getAttribute("data-type")}`,{target:this.carouseCards[this.status > this.cards.length ? 0 : this.status-1]});
     }
-     // transform : translateX(-12.8rem);
     endTransitionHandler(e){
         if(this.status === 0 ){
             this.status = this.cards.length;
