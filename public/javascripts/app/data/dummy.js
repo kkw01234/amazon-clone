@@ -11,31 +11,31 @@ export default{
         {
             title : `Ship`,
             image : `https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_A._CB513333159_.png`,
-            backgroundColor : "blue",
+            color: "#00A8E1",
             button : 4
         },
         {
             title : `Stream`,
             image : `https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_B._CB513285352_.png`,
-            backgroundColor : "red",
+            color: "#FF6138",
             button : 5
         },
         {
             title : `Shop`,
             image : `https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_C._CB513285352_.png`,
-            backgroundColor : "purple",
+            color: "#A90067",
             button : 4
         },
         {
             title : `Read`,
             image : `https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_D._CB513285353_.png`,
-            backgroundColor : "green",
+            color: "#36C2B4",
             button : 2
         },
         {
             title : `More`,
             image : `https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_E._CB513285352_.png`,
-            backgroundColor : "orange",
+            color : "#FFC400",
             button : 2
         }
     ],

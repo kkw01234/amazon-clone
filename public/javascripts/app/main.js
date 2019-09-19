@@ -19,7 +19,7 @@ const root = {
         const cards = dummy.main.reduce((prev,curr)=>{
             const cardcategory = new CardCategory({
                                         title:curr.title,
-                                        backgroundColor:curr.backgroundColor,
+                                        backgroundColor:curr.color,
                                         image:curr.image,
                                         count:curr.button,
                                         nowCount : circleCount,
@@ -35,11 +35,13 @@ const root = {
         const bottomcards = data.result.reduce((prev,curr,idx)=>{
             prev.push(new BottomCard({
                 className : curr.type,
-                title : curr.head,
+                title : curr.title,
+                head : curr.head,
                 content : curr.body,
                 image : curr.image,
                 url : curr.link,
                 urlContent : curr.tail,
+                color : curr.color,
                 width : 50
             }));
             return prev;

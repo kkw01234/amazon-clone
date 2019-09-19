@@ -20,7 +20,13 @@
 }
 
 .bottom-card .bottom-main .bottom-title {
-  font-size: 1.5rem;
+  text-align: center;
+  vertical-align: middle;
+  width: inherit;
+  height: 2rem;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .bottom-card .bottom-main .bottom-url a {

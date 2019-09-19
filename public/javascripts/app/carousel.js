@@ -65,7 +65,6 @@ export class Carousel {
         this.status--;
         this.carouselList.style.transition = "0.5s"
         this.carouselList.style.transform = `translateX(${-this.status*this.width}rem)`;
-        console.log(this.status);
         if(this.emitter)
         this.emitter.notify(`moveMainCard-${this.carouseCards[this.status ? this.status-1 : this.cards.length-1].getAttribute("data-type")}`,{target:this.carouseCards[this.status ? this.status-1 : this.cards.length-1]});
     
