@@ -1,5 +1,5 @@
 export default {
-    "Ship": [
+    "result": [
         {   type : "Ship",
             image: "https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Card_A01._CB514650866_.jpg",
             title: "FAST, FREE DELIVERY",
@@ -35,8 +35,6 @@ export default {
             tail: "Explore Prime Now",
             link: "https://primenow.amazon.com/onboard?sourceUrl=%2F",
         },
-    ],
-    "Stream": [
         {
             type : "Stream",
             image: "https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Card_B01._CB457663232_.jpg",
@@ -82,8 +80,6 @@ export default {
             tail: "Explore Audible Channels",
             link: "https://www.audible.com/mt/getchannels",
         },
-    ],
-    "Shop": [
         {
             type : "Shop",
             image: "https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Card_C06._CB495022579_.jpg",
@@ -120,8 +116,6 @@ export default {
             tail: "Explore Family Supplies",
             link: "https://www.amazon.com/gp/family/signup",
         },
-    ],
-    "Read": [
         {
             type : "Read",
             image: "https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Card_D01._CB514706473_.jpg",
@@ -140,8 +134,6 @@ export default {
             tail: "Learn more about Amazon First Reads",
             link: "https://www.amazon.com/kindlefirst",
         },
-    ],
-    "More": [
         {
             type : "More",
             image: "https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Card_E03._CB513839888_.jpg",

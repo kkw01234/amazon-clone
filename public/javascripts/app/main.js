@@ -1,33 +1,63 @@
 import {Carousel} from "./carousel.js";
-import data from "./data/data.js";
+import data from "./data/data_rdb.js";
 import {SubContainer} from "./subcontainer.js";
 import dummy from "./data/dummy.js";
 import {CardCategory} from "./cardcategory.js"
 import {MainContainer} from "./maincontainer.js";
+import {UrlImage} from "./carouselsource/urlimage.js";
+import {BottomCard} from "./carouselsource/bottom.js";
+
 
 const root = {
     init(){
         const root = document.querySelector("#root");
-       
-        root.innerHTML = "";
+        const bottomCarousel = new Carousel({cards:[],width:50});
+        let circleCount = 0;
         const cards = dummy.main.reduce((prev,curr)=>{
-            const cardcategory = new CardCategory({title:curr.title,backgroundColor:curr.backgroundColor,image:curr.image,count:curr.button});
+            const cardcategory = new CardCategory({
+                                        title:curr.title,
+                                        backgroundColor:curr.backgroundColor,
+                                        image:curr.image,
+                                        count:curr.button,
+                                        nowCount : circleCount
+                                        });
+            circleCount +=curr.button;
             prev.push(cardcategory);
             return prev;
         },[]);
-        const maincontainer = new MainContainer({cards});
+        const maincontainer = new MainContainer({cards,bottomCarousel});
+        
+        
+        const bottomcards = data.result.reduce((prev,curr)=>{
+            prev.push(new BottomCard({
+                title : curr.head,
+                content : curr.body,
+                image : curr.image,
+                url : curr.link,
+                urlContent : curr.tail,
+                width : 50
+            }));
+            return prev;
+        },[]);
+        bottomCarousel.cards = bottomcards;
+
+        root.innerHTML = "";
         root.insertAdjacentHTML("beforeend",maincontainer.render()); 
+        bottomCarousel.enrollEvent();
         cards.forEach(value=>{
             value.enrollEvent();
         });
-        const bottomCarousel = new Carousel({cards:[{html:`<div>asdfsafsfsda</div>`},{html: `<div>test</div>`}],width:100});
-        //여기에 들어갈 세부내용
-        root.insertAdjacentHTML("beforeend",bottomCarousel.render());
-        const miniCarousel = new Carousel({cards:dummy.Mini,width:11.25,height:0,title:"mini"});
+        // const bottomContent = new BottomCard({className:"test",title:data.Ship[0].title,content:data.Ship[0].body,image:data.Ship[0].image,width:50});
+        // const bottomContent2 = new BottomCard({className:"test",title:data.Ship[1].title,content:data.Ship[1].body,image:data.Ship[1].image,width:50});
+        const images = dummy.Mini.reduce((prev,curr)=>{
+            prev.push(new UrlImage(curr.image));
+            return prev;
+        },[]);
+        const miniCarousel = new Carousel({cards:images,width:11.25,height:0,title:"mini"});
         const subContainer = new SubContainer({carousel:miniCarousel,title:dummy.sub[0].title,content:dummy.sub[0].content,url:dummy.sub[0].url});
         root.insertAdjacentHTML("beforeend",subContainer.render()); 
         miniCarousel.enrollEvent();
-        bottomCarousel.enrollEvent();
+        // bottomCarousel.enrollEvent();
     }
 }
 

@@ -1,22 +1,23 @@
 export class CardCategory{
-    constructor({title, image,backgroundColor, count = 0}){
+    constructor({title, image,backgroundColor, count = 0, nowCount = 0}){
         this.title = title;
         this.image = image;
         this.backgroundColor = backgroundColor
         this.count = count;
+        this.nowCount = nowCount;
     }
     render({idx}){
         return /*html*/`
         <div class="category-card ${this.title.toLowerCase()}-card ${idx ? "": "card-clicked"}">
             <div class="category-title">${this.title}</div>
-            <div class="category-content">${this.appendSmallCircle()}</div>
+            <div class="category-content ${this.title}-content">${this.appendSmallCircle()}</div>
         </div>`;
     }
     
     appendSmallCircle(){
         let circles = "";
         for(let i=0;i<this.count;i++){
-            circles += `<div class="circle ${this.title.toLowerCase()}-${i+1}"></div>`; 
+            circles += `<div class="circle ${this.title.toLowerCase()}-${i+1} ${this.nowCount+1}"></div>`; 
         }
         return circles;
     }
@@ -31,7 +32,7 @@ export class CardCategory{
     clickHandler(e){
         
         if(this.categoryCard.classList.contains("card-clicked")) return;
-        const categoryCard = document.querySelectorAll('.category-card');
+        const categoryCard = document.querySelectorAll(`.${this.title}-content`);
         categoryCard.forEach((value)=>{ //바꾸고싶은데
              value.classList.remove("card-clicked");
         });

@@ -30,7 +30,7 @@ export class Carousel {
     makeLi(){
         let list = this.cards.reduce((prev,curr,idx)=>{
             prev +=/*html*/ `<li class="carousel-card ${idx+1}">
-                                ${curr.html}
+                                ${curr.render()}
                             </li>`;
             return prev;
         },"");
@@ -53,9 +53,9 @@ export class Carousel {
         this.right.addEventListener("click", this.rightHandler.bind(this));
         this.left.addEventListener("click", this.leftHandler.bind(this));
         this.carouselList.addEventListener("transitionend", this.endTransitionHandler.bind(this));
-        this.interval = setInterval(this.leftHandler.bind(this),1000*3);
-        this.carouselViewPort.addEventListener('mouseover',()=>{clearInterval(this.interval)});
-        this.carouselViewPort.addEventListener('mouseout',()=>{this.interval = setInterval(this.rightHandler.bind(this),1000*3)});
+        // this.interval = setInterval(this.leftHandler.bind(this),1000*3);
+        // this.carouselViewPort.addEventListener('mouseover',()=>{clearInterval(this.interval)});
+        // this.carouselViewPort.addEventListener('mouseout',()=>{this.interval = setInterval(this.rightHandler.bind(this),1000*3)});
         
     }
     leftHandler() {
