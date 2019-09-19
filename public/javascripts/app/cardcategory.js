@@ -22,19 +22,19 @@ export class CardCategory{
         }
         return circles;
     }
-    enrollEvent(){ //메인에서 등록해주면 됨
+    enrollEvent(){ 
         this.categoryCard = document.querySelector(`.${this.title.toLowerCase()}-card`);
         this.categoryContent = this.categoryCard.querySelector(".category-content");
-        this.categoryCard.addEventListener("click",this.clickHandler.bind(this));
-        this.categoryContent.addEventListener("click",this.circleClickHandler.bind(this));
+        this.categoryCard.addEventListener("click",this.clickCardHandler.bind(this));
+        this.categoryContent.addEventListener("click",this.clickCircleHandler.bind(this));
         this.defaultCircle();
         if(this.emitter)
-            this.emitter.insertEvent(`moveMainCard-${this.title}`,this.clickHandler.bind(this),this.circleClickHandler.bind(this));
+            this.emitter.insertEvent(`moveMainCard-${this.title}`,this.clickCardHandler.bind(this),this.clickCircleHandler.bind(this));
     }
-    clickHandler(e){
+    clickCardHandler(e){
         if(this.categoryCard.classList.contains("card-clicked")) return;
         const categoryCard = document.querySelectorAll('.category-card');
-        categoryCard.forEach((value)=>{ //바꾸고싶은데
+        categoryCard.forEach((value)=>{ 
              value.classList.remove("card-clicked");
         });
         this.categoryCard.classList.add("card-clicked");
@@ -42,10 +42,9 @@ export class CardCategory{
         if(this.emitter)
             this.emitter.notify("moveCards",this.categoryCard.querySelector(".circle"));
     }
-    circleClickHandler(e){
+    clickCircleHandler(e){
         
         this.categoryContent.childNodes.forEach(value=>{
-            console.log(e.target, value);
             if(e.target.getAttribute("data-value") === value.getAttribute("data-value")){
                 value.classList.add("circle-active");
             }else

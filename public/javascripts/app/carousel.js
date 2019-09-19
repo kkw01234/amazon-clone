@@ -45,9 +45,9 @@ export class Carousel {
         this.carouselList = this.carouselViewPort.querySelector(".carousel-list");
         this.carouselMain.style.width = this.width === 0 ? "auto" : this.width+"rem";
         this.carouselList.style.transform = `translateX(${this.width})`;
-        this.carouseCards = this.carouselList.querySelectorAll(".carousel-card");
-        const lastCard = this.carouseCards[this.carouseCards.length-1];
-        const firstCard = this.carouseCards[0]
+        this.carouselCards = this.carouselList.querySelectorAll(".carousel-card");
+        const lastCard = this.carouselCards[this.carouselCards.length-1];
+        const firstCard = this.carouselCards[0]
         this.carouselList.appendChild(firstCard.cloneNode(true));
         this.carouselList.insertBefore(lastCard.cloneNode(true),this.carouselList.firstChild);
         this.carouselList.style.transform = `translateX(${-this.width}rem)`;
@@ -68,7 +68,7 @@ export class Carousel {
         this.carouselList.style.transition = "0.5s"
         this.carouselList.style.transform = `translateX(${-this.status*this.width}rem)`;
         if(this.emitter)
-        this.emitter.notify(`moveMainCard-${this.carouseCards[this.status ? this.status-1 : this.cards.length-1].getAttribute("data-type")}`,{target:this.carouseCards[this.status ? this.status-1 : this.cards.length-1]});
+        this.emitter.notify(`moveMainCard-${this.carouselCards[this.status ? this.status-1 : this.cards.length-1].getAttribute("data-type")}`,{target:this.carouselCards[this.status ? this.status-1 : this.cards.length-1]});
     
     }
     rightHandler() {
@@ -76,7 +76,7 @@ export class Carousel {
         this.carouselList.style.transition =  "0.5s";
         this.carouselList.style.transform = `translateX(${-this.status*this.width}rem)`;
         if(this.emitter)
-            this.emitter.notify(`moveMainCard-${this.carouseCards[this.status > this.cards.length ? 0 : this.status-1].getAttribute("data-type")}`,{target:this.carouseCards[this.status > this.cards.length ? 0 : this.status-1]});
+            this.emitter.notify(`moveMainCard-${this.carouselCards[this.status > this.cards.length ? 0 : this.status-1].getAttribute("data-type")}`,{target:this.carouselCards[this.status > this.cards.length ? 0 : this.status-1]});
     }
     endTransitionHandler(e){
         if(this.status === 0 ){
