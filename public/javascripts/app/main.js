@@ -7,6 +7,8 @@ import {MainContainer} from "./maincontainer.js";
 import {UrlImage} from "./carouselsource/urlimage.js";
 import {BottomCard} from "./carouselsource/bottom.js";
 import {EventEmitter} from "../eventemitter/eventemitter";
+import {footer} from "./footer.js";
+import {header} from "./header.js";
 
 const root = {
     init(){
@@ -58,7 +60,9 @@ const root = {
         },[]);
         const miniCarousel = new Carousel({cards:images,width:11.25,height:0,title:"mini"});
         const subContainer = new SubContainer({carousel:miniCarousel,title:dummy.sub[0].title,content:dummy.sub[0].content,url:dummy.sub[0].url});
+        root.insertAdjacentHTML("afterbegin",header.render());
         root.insertAdjacentHTML("beforeend",subContainer.render()); 
+        root.insertAdjacentHTML("beforeend",footer.render());
         miniCarousel.enrollEvent();
         // bottomCarousel.enrollEvent();
     }
