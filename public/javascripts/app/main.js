@@ -6,12 +6,14 @@ import {CardCategory} from "./cardcategory.js"
 import {MainContainer} from "./maincontainer.js";
 import {UrlImage} from "./carouselsource/urlimage.js";
 import {BottomCard} from "./carouselsource/bottom.js";
-
+import {EventEmitter} from "../eventemitter/eventemitter";
 
 const root = {
     init(){
+      
         const root = document.querySelector("#root");
-        const bottomCarousel = new Carousel({cards:[],width:50});
+        const carouselemitter = new EventEmitter();
+        const bottomCarousel = new Carousel({cards:[],width:50,emitter:carouselemitter});
         let circleCount = 0;
         const cards = dummy.main.reduce((prev,curr)=>{
             const cardcategory = new CardCategory({
@@ -19,7 +21,8 @@ const root = {
                                         backgroundColor:curr.backgroundColor,
                                         image:curr.image,
                                         count:curr.button,
-                                        nowCount : circleCount
+                                        nowCount : circleCount,
+                                        emitter : carouselemitter
                                         });
             circleCount +=curr.button;
             prev.push(cardcategory);
@@ -28,8 +31,9 @@ const root = {
         const maincontainer = new MainContainer({cards,bottomCarousel});
         
         
-        const bottomcards = data.result.reduce((prev,curr)=>{
+        const bottomcards = data.result.reduce((prev,curr,idx)=>{
             prev.push(new BottomCard({
+                className : idx+1,
                 title : curr.head,
                 content : curr.body,
                 image : curr.image,

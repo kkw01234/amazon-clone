@@ -4,12 +4,13 @@ export class Carousel {
      * @constructor
      * @param {Array} cards carousel에 넣을 html을 가지고 있는 배열 ex : [{html:"<div></div>"}]
      */
-    constructor({cards,width = 0,height = 0,title = "none"}) {
+    constructor({cards,width = 0,height = 0,title = "none",emitter}) {
         this.title = title;
         this.cards = cards; 
         this.status = 1;
         this.width = width;
         this.height = height;
+        this.emitter = emitter;
 
     }
     render() {
@@ -53,6 +54,11 @@ export class Carousel {
         this.right.addEventListener("click", this.rightHandler.bind(this));
         this.left.addEventListener("click", this.leftHandler.bind(this));
         this.carouselList.addEventListener("transitionend", this.endTransitionHandler.bind(this));
+        this.cards.forEach(value=>{
+            console.log(value);
+        });
+        if(this.emitter)
+            this.emitter.insertObject(this.moveCards.bind(this));
         // this.interval = setInterval(this.leftHandler.bind(this),1000*3);
         // this.carouselViewPort.addEventListener('mouseover',()=>{clearInterval(this.interval)});
         // this.carouselViewPort.addEventListener('mouseout',()=>{this.interval = setInterval(this.rightHandler.bind(this),1000*3)});
@@ -80,6 +86,12 @@ export class Carousel {
             this.carouselList.style.transition = ``;
             this.carouselList.style.transform = `translateX(${-this.status*this.width}rem)`;
         }
+    }
+    moveCards(e){
+        console.log(e.target, this);
+        this.status = e.target.getAttribute("data-value");
+        this.carouselList.style.transition = "0.5s";
+        this.carouselList.style.transform = `translateX(${-this.status*this.width}rem)`;
     }
 }
 
