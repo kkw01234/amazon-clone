@@ -1,8 +1,17 @@
+import { EventEmitter } from "../eventemitter/eventemitter";
 
 export class Carousel {
     /**
-     * @constructor
-     * @param {Array} cards carousel에 넣을 html을 가지고 있는 배열 ex : [{html:"<div></div>"}]
+     * @description Carousel class
+     * @constructor 
+     * 
+     * @param {Object} param option
+     * @param {Array} param.cards 카드에 넣을 객체 배열
+     * @param {Number} param.width Carousel 너비
+     * @param {Number} param.height Carousel 높이
+     * @param {String} param.title Carousel 이름
+     * @param {EventEmitter} param.emitter 
+     * @param {Boolean} param.interval 주기적으로 반복 여부
      */
     constructor({cards,width = 0,height = 0,title = "none",emitter,interval = false}) {
         this.title = title;
@@ -12,6 +21,7 @@ export class Carousel {
         this.height = height;
         this.emitter = emitter;
         this.interval = interval;
+        
     }
     render() {
         return /*html*/`<div class="carousel-viewport carousel-${this.title.toLowerCase()}">
@@ -58,32 +68,42 @@ export class Carousel {
             this.emitter.insertEvent("moveCards",this.moveCards.bind(this));
         if(this.interval){
             this.interval = setInterval(this.rightHandler.bind(this),1000*3);
-            this.carouselViewPort.addEventListener('mouseover',()=>{clearInterval(this.interval)});
-            this.carouselViewPort.addEventListener('mouseout',()=>{this.interval = setInterval(this.rightHandler.bind(this),1000*3)});    
+            this.carouselViewPort.addEventListener('mouseover',()=>{clearInterval(this.interval);delete this.interval;});
+            this.carouselViewPort.addEventListener('mouseout',()=>{this.interval = setInterval(this.rightHandler.bind(this),1000*3);});    
         }
              
     }
     leftHandler() {
         this.status--;
-        this.carouselList.style.transition = "0.5s"
-        this.carouselList.style.transform = `translateX(${-this.status*this.width}rem)`;
-        if(this.emitter)
-        this.emitter.notify(`moveMainCard-${this.carouselCards[this.status ? this.status-1 : this.cards.length-1].getAttribute("data-type")}`,{target:this.carouselCards[this.status ? this.status-1 : this.cards.length-1]});
-    
+        this.setTransform();
+        if(this.emitter){
+            const status = this.status ? this.status-1 : this.cards.length-1;
+            this.emitter.notify(`moveMainCard-${this.carouselCards[status].getAttribute("data-type")}`,{target:this.carouselCards[status]});
+
+        }
+              
     }
     rightHandler() {
         this.status++;
-        this.carouselList.style.transition =  "0.5s";
+        console.log(this.status);
+        this.setTransform();
+        if(this.emitter){
+            const status = this.status > this.cards.length ? 0 : this.status-1;
+            this.emitter.notify(`moveMainCard-${this.carouselCards[status].getAttribute("data-type")}`,{target:this.carouselCards[status]});
+        }
+            
+    }
+    setTransform(){
+        this.carouselList.style.transition = "0.5s"
         this.carouselList.style.transform = `translateX(${-this.status*this.width}rem)`;
-        if(this.emitter)
-            this.emitter.notify(`moveMainCard-${this.carouselCards[this.status > this.cards.length ? 0 : this.status-1].getAttribute("data-type")}`,{target:this.carouselCards[this.status > this.cards.length ? 0 : this.status-1]});
     }
     endTransitionHandler(e){
-        if(this.status === 0 ){
+        console.log("end",this.status);
+        if(this.status <= 0 ){
             this.status = this.cards.length;
             this.carouselList.style.transition = ``;
             this.carouselList.style.transform = `translateX(${-this.status*this.width}rem)`;
-        }else if(this.status === this.cards.length){
+        }else if(this.status >= this.cards.length){
             this.status = 0;
             this.carouselList.style.transition = ``;
             this.carouselList.style.transform = `translateX(${-this.status*this.width}rem)`;
