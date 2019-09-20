@@ -1,4 +1,4 @@
-$image-size : 12.8rem;
+$image-size : 15rem;
 .carousel-viewport{
     // width : 20rem;
     // height: 11rem;
@@ -32,7 +32,7 @@ $image-size : 12.8rem;
     position : relative;
     // overflow : hidden;
     img{
-      // width : $image-size;
+      width : $image-size;
       height : auto;
     }
   }

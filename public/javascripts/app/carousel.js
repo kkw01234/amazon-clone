@@ -54,6 +54,7 @@ export class Carousel {
         this.carouselMain = this.carouselViewPort.querySelector(".carousel-main");
         this.carouselList = this.carouselViewPort.querySelector(".carousel-list");
         this.carouselMain.style.width = this.width === 0 ? "auto" : this.width+"rem";
+        this.carouselMain.style.height = this.height === 0 ? "auto" : this.height+"rem";
         this.carouselList.style.transform = `translateX(${this.width})`;
         this.carouselCards = this.carouselList.querySelectorAll(".carousel-card");
         const lastCard = this.carouselCards[this.carouselCards.length-1];

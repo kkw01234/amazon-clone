@@ -6,6 +6,7 @@ $category-height:12rem;
     flex-direction: column;
     justify-content: flex-end;
     text-align: center;
+    box-shadow: 0rem 0rem 1rem 0rem gray;
     width: 8rem;
     height: 10rem;
     background-position-x: 0.25rem;
@@ -24,6 +25,7 @@ $category-height:12rem;
             &.circle-active{
                 // border-radius: 1rem solid black;
                 background-color : white;
+                opacity: 1;
             }
         }
     }
@@ -39,12 +41,12 @@ $category-height:12rem;
     }
     .circle{
         margin : 0.1rem;
-        background-color: gray;
+        background-color: black;
         width : 0.8rem;
         height: 0.8rem;
         border-radius: 1rem;
         display : none;
-       
+        opacity: 0.25;
     }
     
 

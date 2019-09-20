@@ -7,6 +7,7 @@ import { BottomCard } from "./carouselsource/bottom.js";
 import { EventEmitter } from "../eventemitter/eventemitter";
 import { footer } from "./footer.js";
 import { header } from "./header.js";
+import { banner} from "./banner.js";
 
 const rootContainer = {
     root: document.querySelector("#root"),
@@ -64,7 +65,7 @@ const rootContainer = {
             }));
             return prev;
         }, []);
-        this.bottomCarousel = new Carousel({ cards: this.bottomcards, width: 50, emitter: this.carouselemitter, interval: false });
+        this.bottomCarousel = new Carousel({ cards: this.bottomcards, width: 50, height:20,emitter: this.carouselemitter, interval: false });
     },
     async makeMainContainer() {
         this.maincontainer = new MainContainer({ cards: this.cards, bottomCarousel: this.bottomCarousel });
@@ -76,7 +77,7 @@ const rootContainer = {
             prev.push(new UrlImage(curr.image));
             return prev;
         }, []);
-        this.miniCarousel = new Carousel({ cards: images, width: 11.25, height: 0, title: "mini", interval: true });
+        this.miniCarousel = new Carousel({ cards: images, width: 15, height: 0, title: "mini", interval: true });
     },
     async makeSubContainer(res) {
         const json = await res.json();
@@ -84,6 +85,7 @@ const rootContainer = {
     },
     render() {
         this.root.insertAdjacentHTML("afterbegin", header.render());
+        this.root.insertAdjacentHTML("beforeend",banner.render());
         this.root.insertAdjacentHTML("beforeend", this.maincontainer.render());
         this.root.insertAdjacentHTML("beforeend", this.subContainer.render());
         this.root.insertAdjacentHTML("beforeend", footer.render());
