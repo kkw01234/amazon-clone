@@ -43,7 +43,7 @@ export class CardCategory{
             this.emitter.notify("moveCards",this.categoryCard.querySelector(".circle"));
     }
     clickCircleHandler(e){
-        
+        if(!e.target.getAttribute('data-value')) return;
         this.categoryContent.childNodes.forEach(value=>{
             if(e.target.getAttribute("data-value") === value.getAttribute("data-value")){
                 value.classList.add("circle-active");

@@ -34,4 +34,8 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+.bottom-card .bottom-main .bottom-url a:hover {
+  text-decoration: underline;
+}
 /*# sourceMappingURL=bottom.css.map */

@@ -72,7 +72,6 @@ const rootContainer = {
     },
     async makeMiniCarousel(res) {
         const json = await res.json();
-        console.log(json);
         const images = json.mini.reduce((prev, curr) => {
             prev.push(new UrlImage(curr.image));
             return prev;

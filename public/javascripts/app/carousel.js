@@ -75,6 +75,7 @@ export class Carousel {
              
     }
     leftHandler() {
+        if(this.status <= 0) return;
         this.status--;
         this.setTransform();
         if(this.emitter){
@@ -85,9 +86,11 @@ export class Carousel {
               
     }
     rightHandler() {
-        this.status++;
         console.log(this.status);
+        if(this.status >= this.cards.length) return;
+        this.status++;
         this.setTransform();
+
         if(this.emitter){
             const status = this.status > this.cards.length ? 0 : this.status-1;
             this.emitter.notify(`moveMainCard-${this.carouselCards[status].getAttribute("data-type")}`,{target:this.carouselCards[status]});
@@ -99,7 +102,6 @@ export class Carousel {
         this.carouselList.style.transform = `translateX(${-this.status*this.width}rem)`;
     }
     endTransitionHandler(e){
-        console.log("end",this.status);
         if(this.status <= 0 ){
             this.status = this.cards.length;
             this.carouselList.style.transition = ``;
@@ -109,11 +111,15 @@ export class Carousel {
             this.carouselList.style.transition = ``;
             this.carouselList.style.transform = `translateX(${-this.status*this.width}rem)`;
         }
+
     }
     moveCards(target){
         this.status = target.getAttribute("data-value");
         this.carouselList.style.transition = "0.5s";
         this.carouselList.style.transform = `translateX(${-this.status*this.width}rem)`;
+    }
+    a(){
+
     }
 }
 
