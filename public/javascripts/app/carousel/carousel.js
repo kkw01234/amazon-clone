@@ -1,4 +1,4 @@
-import { EventEmitter } from "../eventemitter/eventemitter";
+import { EventEmitter } from "../../eventemitter/eventemitter";
 
 export class Carousel {
     /**
@@ -21,7 +21,7 @@ export class Carousel {
         this.height = height;
         this.emitter = emitter;
         this.interval = interval;
-        
+        this.transiting = false;
     }
     render() {
         return /*html*/`<div class="carousel-viewport carousel-${this.title.toLowerCase()}">
@@ -75,7 +75,8 @@ export class Carousel {
              
     }
     leftHandler() {
-        if(this.status <= 0) return;
+        if(this.transiting) return;
+        this.transiting = true;
         this.status--;
         this.setTransform();
         if(this.emitter){
@@ -86,8 +87,8 @@ export class Carousel {
               
     }
     rightHandler() {
-        console.log(this.status);
-        if(this.status >= this.cards.length) return;
+        if(this.transiting) return;
+        this.transiting = true;
         this.status++;
         this.setTransform();
 
@@ -111,15 +112,12 @@ export class Carousel {
             this.carouselList.style.transition = ``;
             this.carouselList.style.transform = `translateX(${-this.status*this.width}rem)`;
         }
-
+        this.transiting = false;
     }
     moveCards(target){
         this.status = target.getAttribute("data-value");
         this.carouselList.style.transition = "0.5s";
         this.carouselList.style.transform = `translateX(${-this.status*this.width}rem)`;
-    }
-    a(){
-
     }
 }
 

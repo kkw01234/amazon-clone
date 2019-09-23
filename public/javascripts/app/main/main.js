@@ -1,20 +1,19 @@
-import { Carousel } from "./carousel.js";
+import { Carousel } from "../carousel/carousel.js";
 import { SubContainer } from "./subcontainer.js";
-import { CardCategory } from "./cardcategory.js"
+import { CardCategory } from "../carousel/cardcategory.js"
 import { MainContainer } from "./maincontainer.js";
-import { UrlImage } from "./carouselsource/urlimage.js";
-import { BottomCard } from "./carouselsource/bottom.js";
-import { EventEmitter } from "../eventemitter/eventemitter";
-import { footer } from "./footer.js";
-import { header } from "./header.js";
-import { banner} from "./banner.js";
+import { UrlImage } from "../carousel/urlimage.js";
+import { BottomCard } from "../carousel/bottom.js";
+import { EventEmitter } from "../../eventemitter/eventemitter";
+import { footer } from "../footer.js";
+import { header } from "../header.js";
+import { banner} from "../banner.js";
 
 const rootContainer = {
     root: document.querySelector("#root"),
     init() {
         this.root.innerHTML = "";
         this.carouselemitter = new EventEmitter();
-        console.time("start1");
         Promise.all([fetch("/data/maincard.json"), fetch("/data/bottomcarousel.json")]).then(async values => {
             await this.makeCardCategory(values[0]);
             await this.makeBottomCard(values[1]);
