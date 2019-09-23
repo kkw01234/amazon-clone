@@ -1,9 +1,12 @@
 const path = __dirname+"/public/javascripts";
 
 module.exports = {
-    entry:[`${path}/app/main/main.js`],
+    entry:{
+        main:`${path}/app/main/main.js`,
+        register: `${path}/app/register/register.js`
+    },
     output:{
         path: path,
-        filename: "bundle.js",
+        filename: "[name].bundle.js",
     }
 }
