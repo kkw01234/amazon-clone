@@ -1,4 +1,5 @@
 import {$} from "../utils.js";
+import {hex_sha512} from "../register/sha512.min.js"
 export const loginPage = {
     render(){
         return/*html*/`<div class="login">
@@ -17,7 +18,18 @@ export const loginPage = {
         this.registerButton.addEventListener("click",this.registerButtonHandler.bind(this));
     },
     loginButtonHandler(){
-        fetch("/login").then((res)=>{
+        const id = $('input[name=id]').value;
+        const password =  $('input[name=password]').value;
+        fetch("/login",{
+            method: `post`,
+            body: {
+                id : id,
+                password : hex_sha512(id+password)
+            },
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then((res)=>{
             res.json().then((data)=>{
                 if(data.result){
                     window.location.href = "/";

@@ -1,9 +1,28 @@
 var express = require('express');
 var router = express.Router();
+const {UserDAO} = require('../src/dao/userdao.js');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.render('register', { title: 'register' });
+router.get('/registerpage', function(req, res, next) {
+  res.render('registerpage', { title: 'registerpage' });
+});
+router.post('/',async (req,res,next)=>{
+    try{
+      const result = await UserDAO.insertUser(req.body);
+      console.log(result);
+      res.send({result : true});
+    }catch(e){
+      console.log(e);
+      res.send({result:false});
+    }
+    
+});
+router.post('/checkid',async (req,res,next)=>{
+    const result = await UserDAO.findUser(req.body.id);
+    if(result.length >= 1){
+        res.send({result : true});
+    }else
+        res.send({result : false});
 });
 
 module.exports = router;

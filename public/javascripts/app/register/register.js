@@ -74,8 +74,8 @@ export const register = {
             <div class="inputText">
                 <select name="gender">
                     <option value="">성별</option>
-                    <option value="male">남</option>
-                    <option value="female">여</option>
+                    <option value="0">남</option>
+                    <option value="1">여</option>
                 </select>
             </div>
         </div>
@@ -184,7 +184,7 @@ const id = {
     },
     async findUser(id) {
         return new Promise((resolve) => {
-            fetch(`/registerpage/checkid`, {
+            fetch(`/register/checkid`, {
                 method: `post`,
                 body: JSON.stringify({
                     id: id
@@ -802,8 +802,7 @@ const registerButton = {
             }
 
         }
-        
-        fetch(`/registerpage/register`, {
+        fetch(`/register`, {
             method: `post`,
             body: registerButton.makeJSON(idValue, passwordValue, nameValue, birthValue, genderValue, emailValue, phoneValue, interestsValue),
             headers: {
@@ -812,20 +811,18 @@ const registerButton = {
         }).then(response => {
             response.json().then(data => {
                 if (data.result) {
-                    history.pushState(null, null, "/");
-                    router("/", true);
-                }
+                    window.location.href = "/";
+                }else
+                    alert("에러발생");
             });
         });
-
-        return true;
     },
     makeJSON(idValue, passwordValue, nameValue, birthValue, genderValue, emailValue, phoneValue, interestsValue) {
         return JSON.stringify({
             id: idValue,
             password: hex_sha512(idValue + passwordValue),
             name: nameValue,
-            birth: birthValue,
+            birth: birthValue.join("-"),
             gender: genderValue,
             email: emailValue,
             phone: phoneValue,
