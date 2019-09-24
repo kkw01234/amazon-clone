@@ -8,7 +8,7 @@ const DBConnect = {
         password :process.env.DB_PASS,
         database : process.env.DB_SCHEMA,
         connectionLimit : 20,
-        waitForConnections:false
+        // waitForConnections:false
     }),
     query(query,params = []){
         return new Promise((resolve,reject)=>{

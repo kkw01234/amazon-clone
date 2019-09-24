@@ -14,13 +14,12 @@ const userQuery = {
     FINDALLUSER : /*SQL*/`SELECT * FROM user`,
     FINDUSER : /*SQL*/`SELECT * FROM user WHERE id = ?`,
     INSERTUSER : /*SQL*/`INSERT INTO user VALUES (?,?,?,?,?,?,?,?,?)`,
-    FINDUSERFORIDANDPASSWORD : /*SQL*/`SELECT * FROM user WHERE id = ? ans password = ?`
+    FINDUSERFORIDANDPASSWORD : /*SQL*/`SELECT * FROM user WHERE id = ? and password = ?`
 
 }
 const UserDAO = {
     createUserTable(){
         DBConnect.query(userQuery.CREATEUSERTABLE);
-        return this;
     },
     async insertUser(user){
         console.log(user);

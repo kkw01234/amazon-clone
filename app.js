@@ -10,12 +10,13 @@ const session = require('express-session');
 const indexRouter = require('./routes/index');
 const registerpage = require('./routes/register');
 const loginpage = require('./routes/login');
-const auth = require('./routes/auth');
-
+const authRouter = require('./routes/auth.js');
+const FileStore = require('session-file-store')(session);
 const app = express();
 
 // view engine setup
 require('dotenv').config();
+app.disable('etag');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(logger('dev'));
@@ -25,11 +26,13 @@ app.use(cookieParser());
 passportConfig(passport);
 app.use(session({
   secret : process.env.COOKIE_SECRET,
-  resave: true,
+  resave: false,
   saveUninitialized: true,
-  cookie:{
-    httpOnly : true
-  }
+  cookie :{
+    maxAge : 1000 * 60 * 30,
+    secure : false
+  },
+  // store : new FileStore,
 }))
 app.use(passport.initialize());
 app.use(passport.session());
@@ -37,9 +40,11 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/register', registerpage);
 app.use('/loginpage', loginpage);
-app.use('/auth',auth);
+app.use('/auth',authRouter);
+app.use('/register', registerpage);
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

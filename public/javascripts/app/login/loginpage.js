@@ -20,19 +20,19 @@ export const loginPage = {
     loginButtonHandler(){
         const id = $('input[name=id]').value;
         const password =  $('input[name=password]').value;
-        fetch("/auth/login",{
+        fetch(`auth/login`,{
             method: `post`,
-            body: {
+            body: JSON.stringify({
                 id : id,
-                password : hex_sha512(id+password)
-            },
+                password : hex_sha512(id + password)
+            }),
             headers: {
                 "Content-Type": "application/json"
             }
         }).then((res)=>{
             res.json().then((data)=>{
                 if(data.result){
-                    window.location.href = "/";
+                   
                 }else{
                     $(".error").innerHTML = "아이디와 비밀번호를 다시 확인해주세요";
                 }

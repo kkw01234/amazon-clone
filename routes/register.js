@@ -9,17 +9,15 @@ router.get('/registerpage', function(req, res, next) {
 router.post('/',async (req,res,next)=>{
     try{
       const result = await UserDAO.insertUser(req.body);
-      console.log(result);
       res.send({result : true});
     }catch(e){
-      console.log(e);
       res.send({result:false});
     }
     
 });
 router.post('/checkid',async (req,res,next)=>{
     const result = await UserDAO.findUser(req.body.id);
-    if(result.length >= 1){
+    if(result.length > 0){
         res.send({result : true});
     }else
         res.send({result : false});
