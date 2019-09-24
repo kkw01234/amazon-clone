@@ -14,7 +14,8 @@ const userQuery = {
     FINDALLUSER : /*SQL*/`SELECT * FROM user`,
     FINDUSER : /*SQL*/`SELECT * FROM user WHERE id = ?`,
     INSERTUSER : /*SQL*/`INSERT INTO user VALUES (?,?,?,?,?,?,?,?,?)`,
-    
+    FINDUSERFORIDANDPASSWORD : /*SQL*/`SELECT * FROM user WHERE id = ? ans password = ?`
+
 }
 const UserDAO = {
     createUserTable(){
@@ -40,8 +41,12 @@ const UserDAO = {
     findAllUser(){
 
     },
+    async findUserForIdAndPassword(id, password){
+        return await DBConnect.query(userQuery.FINDUSERFORIDANDPASSWORD,[id,password]);
+    },
     async findUser(id){
-        return await DBConnect.query(userQuery.FINDUSER,[id]);
+        const result = await DBConnect.query(userQuery.FINDUSER,[id]);
+        return result[0];
     }
     
 }
