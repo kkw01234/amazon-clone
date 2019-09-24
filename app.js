@@ -4,11 +4,13 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const passport = require('passport');
+const passportConfig = require('./src/passport/passport');
 const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 const indexRouter = require('./routes/index');
 const registerpage = require('./routes/register');
 const loginpage = require('./routes/login');
+const auth = require('./routes/auth');
 
 const app = express();
 
@@ -20,6 +22,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+passportConfig(passport);
 app.use(session({
   secret : process.env.COOKIE_SECRET,
   resave: true,
@@ -35,7 +38,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/register', registerpage);
-app.use('/login', loginpage);
+app.use('/loginpage', loginpage);
+app.use('/auth',auth);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

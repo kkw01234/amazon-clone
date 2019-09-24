@@ -11,15 +11,5 @@ module.exports = (passport) => {
     passport.deserializeUser((user, done)=>{
         done(null, user);
     });
-    passport.use(new LocalStrategy({
-        usernameField: 'id',
-        passwordField: 'password',
-        passReqToCallback: true
-      }, async function (req, id, password, done) {
-          const user = await UserDAO.findUserForIdAndPassword(id, password);
-          if(user.length > 0)
-            return done(null, user);
-          else
-            return done(null, false);
-      }))
+  
 }

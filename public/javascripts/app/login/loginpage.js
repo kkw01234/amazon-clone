@@ -20,7 +20,7 @@ export const loginPage = {
     loginButtonHandler(){
         const id = $('input[name=id]').value;
         const password =  $('input[name=password]').value;
-        fetch("/login",{
+        fetch("/auth/login",{
             method: `post`,
             body: {
                 id : id,
