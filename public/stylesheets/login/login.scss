@@ -1,0 +1,14 @@
+/**/
+#root{
+    display : flex;
+    justify-content: center;
+    .login{
+        display: flex;
+        flex-direction: column;
+    }
+    input{
+        margin : 0.5rem;
+        width: 20rem;
+        height: 2rem;
+    }
+}

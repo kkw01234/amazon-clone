@@ -36,12 +36,17 @@ body{
 
 }
 .btn.btn-small{
-  width:6em;
-  height: 2em;
+  width:4rem;
+  height: 2rem;
   font-size:1em;
 }
 .btn.btn-middle{
   width:6em;
   height:2em;
-  font-size: 1.8em;
+  font-size: 1.2rem;
+}
+.btn.btn-large{
+  width: 8rem;
+  height: 3rem;
+  font-size : 1.4rem;
 }
