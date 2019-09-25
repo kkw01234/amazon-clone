@@ -19,10 +19,6 @@ header .header-top {
   padding: 0.3rem;
 }
 
-header .header-top span {
-  max-width: 25rem;
-}
-
 header .logo {
   width: 8rem;
   height: auto;

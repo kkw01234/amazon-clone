@@ -17,9 +17,11 @@ const rootContainer = {
         Promise.all([fetch("/data/mainCardCarousel"), fetch("/data/bottomCarousel"), fetch("/auth")]).then(async values => {
 
             Promise.all([values[0].json(), values[1].json(), values[2].json()]).then(data => {
+                console.log(data[2].isAdmin);
                 this.makeCardCategory(data[0]);
                 this.makeBottomCard(data[1]);
                 this.username = data[2].username;
+                this.isAdmin = data[2].isAdmin;
                 this.makeMainContainer();
             }).then(() => {
                 Promise.all([fetch("/data/miniCarousel"), fetch("/data/subContainer")]).then(async (values) => {
@@ -86,7 +88,8 @@ const rootContainer = {
         this.subContainer = new SubContainer({ carousel: this.miniCarousel, title: data.result[0].title, content: data.result[0].content, url: data.result[0].url });
     },
     render() {
-        this.root.insertAdjacentHTML("afterbegin", header.render(this.username));
+        console.log(this.isAdmin);
+        this.root.insertAdjacentHTML("afterbegin", header.render(this.username,this.isAdmin));
         this.root.insertAdjacentHTML("beforeend", banner.render());
         this.root.insertAdjacentHTML("beforeend", this.maincontainer.render());
         this.root.insertAdjacentHTML("beforeend", this.subContainer.render());
