@@ -9,8 +9,8 @@ const passportConfig = require('./src/passport/passport');
 const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 const indexRouter = require('./routes/index');
-const registerpage = require('./routes/register');
-const loginpage = require('./routes/login');
+const registerpage = require('./routes/registerpage');
+const loginpage = require('./routes/loginpage');
 const authRouter = require('./routes/auth.js');
 const FileStore = require('session-file-store')(session);
 const app = express();
@@ -50,7 +50,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/loginpage', loginpage);
 app.use('/auth',authRouter);
-app.use('/register', registerpage);
+app.use('/registerpage', registerpage);
 
 
 

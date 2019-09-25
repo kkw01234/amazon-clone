@@ -184,7 +184,7 @@ const id = {
     },
     async findUser(id) {
         return new Promise((resolve) => {
-            fetch(`/register/checkid`, {
+            fetch(`/auth/checkid`, {
                 method: `post`,
                 body: JSON.stringify({
                     id: id
@@ -802,7 +802,7 @@ const registerButton = {
             }
 
         }
-        fetch(`/register`, {
+        fetch(`/auth/register`, {
             method: `post`,
             body: registerButton.makeJSON(idValue, passwordValue, nameValue, birthValue, genderValue, emailValue, phoneValue, interestsValue),
             headers: {

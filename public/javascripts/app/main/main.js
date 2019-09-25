@@ -97,6 +97,7 @@ const rootContainer = {
         this.cards.forEach(value => {
             value.enrollEvent();
         });
+        header.addMenuEvent();
     }
 }
 

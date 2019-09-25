@@ -13,7 +13,7 @@ export const header = {
                                 </span>
                                 <span class="right-header">
                                     <span style="color:white;font-size:1.2em">${username}님 환영합니다.</span>
-                                    <a class="btn btn-middle" href="/logout">Log out</a>
+                                    <a class="btn btn-middle" href="/auth/logout">Log out</a>
                                     <a class="btn btn-middle">My page</a>
                                     <img class="menu-icon" src="../images/menu.svg" >
                                 </span>
@@ -48,12 +48,8 @@ export const header = {
                     <li>CONTANT</li>
                 </ul>`;
     },
-    addLogoutEvent(){
-        const logout = document.querySelector(".logout");
-        logout.addEventListener("click", this.addLogoutHandler); 
-    },
     addMenuEvent(){
-        const menuicon = document.querySelector(".menuicon");
+        const menuicon = document.querySelector(".menu-icon");
         menuicon.addEventListener('click',()=>{
             const menu = document.querySelector(".menu");
             if(menu.style.display === 'none'){

@@ -24,6 +24,23 @@ router.get('/logout',function(req,res,next){
     req.session.destroy();
     res.redirect("/");
 });
+router.post('/register',async (req,res,next)=>{
+    try{
+      const result = await UserDAO.insertUser(req.body);
+      if(result)
+        res.send({result:true});
+    }catch(e){
+      res.send({result:false});
+    }
+    
+});
+router.post('/checkid',async (req,res,next)=>{
+    const result = await UserDAO.findUser(req.body.id);
+    if(result.length > 0){
+        res.send({result : true});
+    }else
+        res.send({result : false});
+});
 
 router.get('/',function(req,res,next){
     if(req.isAuthenticated()){
