@@ -91,7 +91,6 @@ export class Carousel {
         this.transiting = true;
         this.status++;
         this.setTransform();
-
         if(this.emitter){
             const status = this.status > this.cards.length ? 0 : this.status-1;
             this.emitter.notify(`moveMainCard-${this.carouselCards[status].getAttribute("data-type")}`,{target:this.carouselCards[status]});
