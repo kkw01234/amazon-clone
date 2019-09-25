@@ -1,0 +1,12 @@
+nav ul, nav li {
+  list-style: none;
+}
+
+nav.main-nav {
+  background-color: #6aa6ff;
+}
+
+nav.inactive {
+  display: none;
+}
+/*# sourceMappingURL=nav.css.map */

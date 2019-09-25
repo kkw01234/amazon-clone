@@ -1,0 +1,11 @@
+nav{
+    ul, li{
+        list-style: none;
+    }
+    &.main-nav{
+        background-color : #6aa6ff;
+    }
+    &.inactive{
+        display: none;
+    }
+}

@@ -1,3 +1,4 @@
+import {nav} from './nav.js';
 export const header = {
     render(username = false) {
         console.log(username);
@@ -18,7 +19,7 @@ export const header = {
                                     <img class="menu-icon" src="../images/menu.svg" >
                                 </span>
                             </div>
-                        <div class="menu" style="display:none">${this.setMenu}</div>
+                        ${nav.render('main')}
                         </header>`;
                         
     },
@@ -36,27 +37,18 @@ export const header = {
                                     <img class="menu-icon" src="../images/menu.svg">
                                 </span>
                             </div>
-                            <div class="menu" style="display:none">${this.setMenu}</div>
+                            ${nav.render('main')}
                         </header>`;
                         
     }, 
-    setMenu() {  
-       return /*html*/ `
-                <ul>
-                    <li><a href="/">HOME</a></li>
-                    <li>ABOUT US</li>
-                    <li>CONTANT</li>
-                </ul>`;
-    },
     addMenuEvent(){
         const menuicon = document.querySelector(".menu-icon");
         menuicon.addEventListener('click',()=>{
-            const menu = document.querySelector(".menu");
-            if(menu.style.display === 'none'){
-                menu.style.display = 'block';
-            }else{
-                menu.style.display = 'none';
-            }
+            const menu = document.querySelector(".main-nav");
+            if(menu.classList.contains("inactive")){
+                menu.classList.remove('inactive');
+            }else
+                menu.classList.add('inactive');
         });
     },
 }
