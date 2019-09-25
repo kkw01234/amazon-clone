@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const passport = require('passport');
-
+const {UserDAO} = require("../src/dao/userdao");
 router.post('/login',  (req, res, next)=> {
     passport.authenticate('local', (authError,user,info)=>{
         if(authError){
@@ -36,7 +36,7 @@ router.post('/register',async (req,res,next)=>{
 });
 router.post('/checkid',async (req,res,next)=>{
     const result = await UserDAO.findUser(req.body.id);
-    if(result.length > 0){
+    if(result){
         res.send({result : true});
     }else
         res.send({result : false});
