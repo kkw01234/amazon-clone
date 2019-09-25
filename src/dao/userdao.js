@@ -20,6 +20,7 @@ const userQuery = {
     INSERTUSER : /*SQL*/`INSERT INTO user VALUES (?,?,?,?,?,?,?,?,?)`,
     FINDUSERFORIDANDPASSWORD : /*SQL*/`SELECT * FROM user WHERE id = ? and password = ?`,
     FINDAUTHORITYLEVEL : /*SQL*/`SELECT authority_level FROM authority WHERE authority_name = ?`,
+     
 }
 const UserDAO = {
     createUserTable(){
@@ -44,7 +45,7 @@ const UserDAO = {
 
     },
     findAllUser(){
-
+        return await DBConnect.query(userQuery.FINDALLUSER);
     },
     async findUserForIdAndPassword(id, password){
         // return new Promise((resolve,reject)=>{
