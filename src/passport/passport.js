@@ -6,11 +6,10 @@ const {UserDAO} = require("../dao/userdao");
  */
 module.exports = (passport) => {
     passport.serializeUser((user,done)=>{
-        done(null, user);
-        
+        done(null, user); 
     });
     passport.deserializeUser((user, done)=>{
-        //console.log("deserialize :",user);
+        console.log("deserializeUser")
         done(null, user);
     });
     local(passport);

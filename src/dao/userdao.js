@@ -22,7 +22,6 @@ const UserDAO = {
         DBConnect.query(userQuery.CREATEUSERTABLE);
     },
     async insertUser(user){
-        console.log(user);
         return await DBConnect.query(userQuery.INSERTUSER,[
             user.id,
             user.password,
@@ -41,7 +40,16 @@ const UserDAO = {
 
     },
     async findUserForIdAndPassword(id, password){
-        return await DBConnect.query(userQuery.FINDUSERFORIDANDPASSWORD,[id,password]);
+        // return new Promise((resolve,reject)=>{
+        //     DBConnect.query(userQuery.FINDUSERFORIDANDPASSWORD,[id,password]).then(res=>{
+        //         if(res.length > 0){
+        //             resolve(res);
+        //         }else
+        //             resolve(false);
+        //     });
+        // })
+        const users = await DBConnect.query(userQuery.FINDUSERFORIDANDPASSWORD,[id,password]);
+        return users.length > 0 ? users[0] : false;
     },
     async findUser(id){
         const result = await DBConnect.query(userQuery.FINDUSER,[id]);

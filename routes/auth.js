@@ -14,12 +14,23 @@ router.post('/login',  (req, res, next)=> {
             if(loginError){
                return next(loginError);
             }
-            return res.redirect("/");
+            console.log(user);
+            return res.send({result : true});
         });
     })(req,res,next);
 });
 router.get('/logout',function(req,res,next){
+    req.logout();
+    req.session.destroy();
+    res.redirect("/");
+});
 
+router.get('/',function(req,res,next){
+    if(req.isAuthenticated()){
+        res.send({auth : true, username : req.session.passport.user.name});
+    }else{
+        res.send({auth : false});
+    }
 });
 
 module.exports = router;

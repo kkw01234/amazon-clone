@@ -14,9 +14,12 @@ const rootContainer = {
     init() {
         this.root.innerHTML = "";
         this.carouselemitter = new EventEmitter();
-        Promise.all([fetch("/data/maincard.json"), fetch("/data/bottomcarousel.json")]).then(async values => {
+        Promise.all([fetch("/data/maincard.json"), fetch("/data/bottomcarousel.json"), fetch("/auth")]).then(async values => {
             await this.makeCardCategory(values[0]);
             await this.makeBottomCard(values[1]);
+            const userData = await values[2].json();
+            console.log(userData);
+            this.username = userData.username;
             this.makeMainContainer();
         }).then(() => {
             Promise.all([fetch("/data/minicarousel.json"), fetch("/data/sub.json")]).then(async (values) => {
@@ -82,7 +85,7 @@ const rootContainer = {
         this.subContainer = new SubContainer({ carousel: this.miniCarousel, title: json.sub[0].title, content: json.sub[0].content, url: json.sub[0].url });
     },
     render() {
-        this.root.insertAdjacentHTML("afterbegin", header.render());
+        this.root.insertAdjacentHTML("afterbegin", header.render(this.username));
         this.root.insertAdjacentHTML("beforeend",banner.render());
         this.root.insertAdjacentHTML("beforeend", this.maincontainer.render());
         this.root.insertAdjacentHTML("beforeend", this.subContainer.render());

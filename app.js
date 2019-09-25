@@ -1,3 +1,4 @@
+const cors = require('cors');
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -13,8 +14,13 @@ const loginpage = require('./routes/login');
 const authRouter = require('./routes/auth.js');
 const FileStore = require('session-file-store')(session);
 const app = express();
-
+const sess_option = {
+  retires : 5,
+  minTimeout : 100,
+  maxTimeout : 150
+}
 // view engine setup
+app.use(cors());
 require('dotenv').config();
 app.disable('etag');
 app.set('views', path.join(__dirname, 'views'));
@@ -26,14 +32,16 @@ app.use(cookieParser());
 passportConfig(passport);
 app.use(session({
   secret : process.env.COOKIE_SECRET,
-  resave: false,
-  saveUninitialized: true,
+  resave: true,
+  saveUninitialized: false,
   cookie :{
     maxAge : 1000 * 60 * 30,
-    secure : false
+    secure : false,
+    httpOnly : true
   },
-  // store : new FileStore,
-}))
+  // store : new FileStore(sess_option),
+}));
+
 app.use(passport.initialize());
 app.use(passport.session());
 

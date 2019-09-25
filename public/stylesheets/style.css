@@ -29,7 +29,9 @@ body{
   color: white;
   text-align: center;
   margin: 5px 5px;
-  cursor: pointer;  
+  cursor: pointer; 
+  text-decoration: none;
+  border-radius: 0.2rem;
 }
 .btn.btn-disabled{
   background-color:#999999;
@@ -42,7 +44,7 @@ body{
 }
 .btn.btn-middle{
   width:6em;
-  height:2em;
+  height:2.5em;
   font-size: 1.2rem;
 }
 .btn.btn-large{

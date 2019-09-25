@@ -1,0 +1,25 @@
+header{
+    display :flex;
+    flex-direction: column;
+    background-color :#5a96ff;
+    .header-top{
+        display: flex;
+        justify-content: space-between;
+        padding :0.3rem;
+        span{
+            max-width : 25rem;
+        }
+    }
+    .logo{
+        width : 8rem;
+        height : auto;
+    }
+    .menu-icon{
+        width : 2rem;
+        height :2rem;
+    }
+    
+}
+.menu{
+    
+}

@@ -1,6 +1,6 @@
 import {$} from "../utils.js";
 import {hex_sha512} from "../register/sha512.min.js"
-export const loginPage = {
+const loginPage = {
     render(){
         return/*html*/`<div class="login">
                 <div><input type="text" name="id"></div>
@@ -32,7 +32,7 @@ export const loginPage = {
         }).then((res)=>{
             res.json().then((data)=>{
                 if(data.result){
-                   
+                    window.location.href = "/";
                 }else{
                     $(".error").innerHTML = "아이디와 비밀번호를 다시 확인해주세요";
                 }
@@ -46,6 +46,5 @@ export const loginPage = {
     }
 }
 const root = $('#root');
-console.log(root);
 root.innerHTML = loginPage.render();
 loginPage.enrollEvent();
