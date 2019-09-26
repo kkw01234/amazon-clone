@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const {isAdmin,isLoggIn} = require('./authoritycheck');
 const {UserDAO} = require('../src/dao/userdao');
-router.get('/findalluser', isLoggIn, isAdmin,async function(req, res, next) {
+router.get('/findalluser',async function(req, res, next) {
     try{
         const users = await UserDAO.findAllUser();
         res.send({users});
@@ -11,7 +11,7 @@ router.get('/findalluser', isLoggIn, isAdmin,async function(req, res, next) {
     }
 });
 
-fouter.get('/authoritychange/:id', isLoggIn, isAdmin,function(req,res,next){
+router.get('/authoritychange/:id', isLoggIn, isAdmin,function(req,res,next){
 });
 
 

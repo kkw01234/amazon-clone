@@ -1,34 +1,36 @@
 
 import {$,$$} from '../utils';
-class Table{
-    constructor(name,tableHead){
-        this.name = name;
-        this.tableHead = tableHead;
+export class Table{
+    constructor({name,tableHead,userObjs}){
+        this.name = name || "none";
+        this.tableHead = tableHead || ["id"];
+        this.userObjs = userObjs || [];
     }
-
     render(){
         return /*html */`<div class="${this.name}-card">
-        <table>
-            <thead class="${this.name}-thead">
-                <tr>
-                    ${this.addTableHead()}
-                </tr>
-            </thead>
-            <tbody class="${this.name}-tbody">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        ${this.addTableHead()}
+                                    </tr>
+                                </thead>
+                                <tbody class="${this.name}-tbody">
                
-            </tbody>
-
-        </table>
-    </div>`;
+                                </tbody>
+                            </table>
+                      
+                        </div>`;
     }
     addTableHead(){
         return this.tableHead.reduce((prev,curr)=>{
             prev += `<th>${curr}</th>`;
-        })
+            return prev;
+        },"");
     }
-    addUserInformatino(users){
-        const tbody = $('.user-tbody');
-        tbody.innerHTML = users.reduce((prev, curr)=>{
+    addUserInformation(){
+        const tbody = $(`.${this.name}-tbody`);
+        tbody.innerHTML = this.userObjs.reduce((prev, curr)=>{
+            console.log(curr.render());
             prev += curr.render();
             return prev;
         },"");

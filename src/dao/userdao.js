@@ -15,7 +15,7 @@ const userQuery = {
         authority_level INT PRIMARY KEY,
         authority_name VARCHAR(20) NOT NULL
     )`,
-    FINDALLUSER : /*SQL*/`SELECT * FROM user`,
+    FINDALLUSER : /*SQL*/`SELECT id,name,birth,gender,email,phone,authority_level FROM user`,
     FINDUSER : /*SQL*/`SELECT * FROM user WHERE id = ?`,
     INSERTUSER : /*SQL*/`INSERT INTO user VALUES (?,?,?,?,?,?,?,?,?)`,
     FINDUSERFORIDANDPASSWORD : /*SQL*/`SELECT * FROM user WHERE id = ? and password = ?`,
@@ -44,7 +44,7 @@ const UserDAO = {
     update(){
 
     },
-    findAllUser(){
+    async findAllUser(){
         return await DBConnect.query(userQuery.FINDALLUSER);
     },
     async findUserForIdAndPassword(id, password){

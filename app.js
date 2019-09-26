@@ -12,7 +12,8 @@ const indexRouter = require('./routes/index');
 const registerpageRouter = require('./routes/registerpage');
 const loginpageRouter = require('./routes/loginpage');
 const adminpageRouter = require('./routes/adminpage');
-const authRouter = require('./routes/auth.js');
+const adminRouter = require('./routes/admin');
+const authRouter = require('./routes/auth');
 
 const FileStore = require('session-file-store')(session);
 const app = express();
@@ -54,6 +55,7 @@ app.use('/loginpage', loginpageRouter);
 app.use('/auth',authRouter);
 app.use('/registerpage', registerpageRouter);
 app.use('/adminpage', adminpageRouter);
+app.use('/admin', adminRouter);
 
 
 

@@ -4,7 +4,8 @@ module.exports = {
     entry:{
         main:`${path}/app/main/main.js`,
         register: `${path}/app/register/register.js`,
-        loginpage : `${path}/app/login/loginpage.js`
+        loginpage : `${path}/app/login/loginpage.js`,
+        adminpage : `${path}/app/admin/admin.js`
     },
     output:{
         path: path,
