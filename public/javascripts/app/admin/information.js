@@ -30,8 +30,8 @@ export class Information {
             </div>
         </td>`;
         } else {
-            rendering += ` <td><button class="btn btn-auth-${this.id}-change">변경</button>
-            <button class="btn btn-auth-${this.id}-delete">삭제</button></td>`;
+            rendering += ` <td><button class="btn btn-small btn-disabled btn-auth-${this.id}-change">변경</button>
+            <button class="btn btn-small btn-auth-${this.id}-delete">삭제</button></td>`;
         }
         rendering += `</tr>`;
         return rendering;

@@ -34,6 +34,11 @@ table .link {
   max-width: 10rem;
 }
 
+table img {
+  min-width: 5rem;
+  min-height: 5rem;
+}
+
 .admin-page {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -56,6 +61,7 @@ table .link {
 
 .admin-main {
   margin: 1rem;
+  width: 100rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

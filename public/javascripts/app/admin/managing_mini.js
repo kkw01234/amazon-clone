@@ -16,7 +16,7 @@ export const managingMini = {
         .then(this.render.bind(this));
     },
     makeMiniObjects(bottoms){
-        this.bottomTableHead = [...Object.keys(bottoms[0]),"Modify"];
+        this.bottomTableHead = ["번호","서브번호","이미지","수정"];
         return bottoms.reduce((prev,bottoms)=>{
             prev.push(new Information(bottoms,"mini"));
             return prev;
