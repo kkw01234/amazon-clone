@@ -7,8 +7,14 @@ table thead tr {
   background-color: #eeeeee;
 }
 
+table thead th {
+  min-width: 10%;
+  white-space: nowrap;
+}
+
 table tbody tr {
   text-align: center;
+  border-bottom: 0.01rem solid black;
 }
 
 .admin-page {

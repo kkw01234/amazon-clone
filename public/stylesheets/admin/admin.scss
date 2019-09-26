@@ -6,10 +6,17 @@ table{
             border-bottom : 0.1rem solid black;
             background-color :#eeeeee;
         }
+        th{
+        //    display : flex;
+           min-width: 10%;
+           white-space: nowrap;
+        }
     }
     tbody{
         tr{
             text-align: center;
+            border-bottom : 0.01rem solid black;
+         
         }
     }
 }

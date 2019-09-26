@@ -39,5 +39,6 @@ export const managingMain = {
     `;
     this.table.addUserInformation();
     this.table.enrollEvent();
+    header.addMenuEvent();
     }
 }

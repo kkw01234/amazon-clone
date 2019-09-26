@@ -39,6 +39,7 @@ export const managingUser = {
         `;
         this.table.addUserInformation();
         this.table.enrollEvent();
+        header.addMenuEvent();
     },
     
 }

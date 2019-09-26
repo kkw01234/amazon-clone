@@ -9,10 +9,10 @@ export class Information {
         let rendering = `<tr>`;
         for (let i in this.obj) {
             if (i === "image") {
-                rendering += `<td class="${i}-${this.id}"><img src="${this.obj[i]}" style="width:10rem;height:5rem;"></td>`;
+                rendering += `<td class="${i}-${this.id} ${i}"><img src="${this.obj[i]}" style="width:10rem;height:5rem;"></td>`;
                 continue;
             }
-            rendering += `<td class="${i}-${this.id}">${this.obj[i]}</td>`;
+            rendering += `<td class="${i}-${this.id} ${i}">${this.obj[i]}</td>`;
         }
         if (this.name === "user") {
             rendering += `<td>
@@ -27,8 +27,8 @@ export class Information {
             </div>
         </td>`;
         } else {
-            rendering += ` <button class="btn btn-auth-${this.id}-change">변경</button>
-            <button class="btn btn-auth-${this.id}-delete">삭제</button>`;
+            rendering += ` <td><button class="btn btn-auth-${this.id}-change">변경</button>
+            <button class="btn btn-auth-${this.id}-delete">삭제</button></td>`;
         }
         rendering += `</tr>`;
         return rendering;

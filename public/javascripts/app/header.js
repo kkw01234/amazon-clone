@@ -8,14 +8,14 @@ export const header = {
                             <div class="header-top">
                                 <span class="left-header">
                                     <a href="/">
-                                        <img class="logo" src="../images/logo.png">
+                                        <img class="logo" src="/images/logo.png">
                                     </a>
                                 </span>
                                 <span class="right-header">
                                     <span style="color:white;font-size:1.2em">${username}님 환영합니다.</span>
                                     <a class="btn btn-middle" href="/auth/logout">Log out</a>
                                     ${isAdmin ? this.addAdminPageButton() :`<a class="btn btn-middle">My page</a>`}
-                                    <img class="menu-icon" src="../images/menu.svg" >
+                                    <img class="menu-icon" src="/images/menu.svg" >
                                 </span>
                             </div>
                         ${nav.render('main')}
@@ -30,13 +30,13 @@ export const header = {
                             <div class="header-top">
                                 <span class="left-header">
                                     <a href="/">
-                                        <img class="logo" src="../images/logo.png">
+                                        <img class="logo" src="/images/logo.png">
                                     </a>
                                 </span>
                                 <span class="right-header">
                                     <a class="btn btn-middle" href="/loginpage">Sign in</a> 
                                     <a class="btn btn-middle" href="/registerpage"> Sign up</a>
-                                    <img class="menu-icon" src="../images/menu.svg">
+                                    <img class="menu-icon" src="/images/menu.svg">
                                 </span>
                             </div>
                             ${nav.render('main')}

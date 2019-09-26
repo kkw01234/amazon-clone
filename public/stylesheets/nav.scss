@@ -8,4 +8,13 @@ nav{
     &.inactive{
         display: none;
     }
+    &.admin-nav{
+        background-color : #fafafa;
+        width : 10%;
+        a{
+            margin : 1rem;
+            text-decoration: none;
+            font-size : 1.2rem;
+        }
+    }
 }

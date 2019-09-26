@@ -39,5 +39,6 @@ export const managingMini = {
     `;
     this.table.addUserInformation();
     this.table.enrollEvent();
+    header.addMenuEvent();
     }
 }
