@@ -88,7 +88,11 @@ export class Information {
             }).then(res => {
                 return res.json();
             }).then(data => {
-                console.log(data);
+                if(data.result){
+                    alert("삭제가 완료되었습니다.")
+                }else{
+                    alert("삭제하는도중 문제가 생겼습니다. 다시 확인해주세요")
+                }
             });
         });
     }

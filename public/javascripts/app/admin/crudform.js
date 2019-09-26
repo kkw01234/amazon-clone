@@ -26,27 +26,38 @@ class CrudForm{
    }
    upload(){
        this.image = $('input[name=image-file]');
-       this.head = $('input[name=head]');
-       this.color = $('input[name=color]');
-       this.title = $('input[name=title]');
-       this.content = $('textarea[name=content]');
-       this.urlContent = $('input[name=url-content]');
-       this.link = $('input[name=link]');
+       this.head = $('input[name=head]').value;
+       this.color = $('input[name=color]').value;
+       this.title = $('select[name=title]').value;
+       this.content = $('textarea[name=content]').value;
+       this.urlContent = $('input[name=url-content]').value;
+       this.link = $('input[name=link]').value;
+       if(!this.head || !this.color || !this.title || !this.content || !this.urlContent || !this.link || !this.image.files[0]){
+           console.log(this.head,this.color,this.title,this.content,this.urlContent,this.link);
+           alert("다시한번 확인 부탁드립니다.");
+           return;
+       }
        const formdata = new FormData();
        console.log(this.image.files[0]);
        formdata.append("image",this.image.files[0]);
-       formdata.append("head",this.head.value);
-       formdata.append("color",this.color.value);
-       formdata.append('title',this.title.value);
-       formdata.append('content',this.content.value);
-       formdata.append('url_content',this.urlContent.value);
-       formdata.append('link',this.link.value);
+       formdata.append("head",this.head);
+       formdata.append("color",this.color);
+       formdata.append('title',this.title);
+       formdata.append('content',this.content);
+       formdata.append('url_content',this.urlContent);
+       formdata.append('link',this.link);
        fetch('/adminpage/write/upload',{
            method : `post`,
            body : formdata
        }).then(res=>{
-           console.log(res);
-       })
+          return res.json();
+       }).then(res=>{
+           if(res.result){
+                alert("추가가 완료되었습니다.");
+                window.location.href="/adminpage/read/main"
+           }else  
+                alert("다시한번 확인해주세요");
+       });
    }
 }
 
