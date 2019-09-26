@@ -16,7 +16,11 @@ table{
         tr{
             text-align: center;
             border-bottom : 0.01rem solid black;
-         
+           
+        }
+        td{
+            padding : 1rem;
+            vertical-align: middle;
         }
     }
 }

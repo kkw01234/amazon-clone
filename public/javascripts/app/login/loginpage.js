@@ -2,13 +2,15 @@ import {$} from "../utils.js";
 import {hex_sha512} from "../register/sha512.min.js"
 const loginPage = {
     render(){
-        return/*html*/`<div class="login">
-                <div><input type="text" name="id"></div>
-                <div><input type="password" name="password"></div>
-                <div class="btn-container"><button id="login-button" class="btn btn-success btn-large">로그인</button>
-                <button id="register-button" class="btn btn-success btn-large">회원가입</button></div>
-                <div class="error"></div>
-             </div>   
+        return/*html*/`
+                <div style="text-align:center;font-size:1.5rem">로그인 페이지</div>
+                <div class="login">
+                    <div style="text-align:center"><input type="text" name="id"></div>
+                    <div style="text-align:center"><input type="password" name="password"></div>
+                    <div class="btn-container"><button id="login-button" class="btn btn-success btn-large">로그인</button>
+                    <button id="register-button" class="btn btn-success btn-large">회원가입</button></div>
+                    <div class="error"></div>
+                </div>   
         `;
     },
     enrollEvent(){

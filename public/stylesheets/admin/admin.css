@@ -17,6 +17,11 @@ table tbody tr {
   border-bottom: 0.01rem solid black;
 }
 
+table tbody td {
+  padding: 1rem;
+  vertical-align: middle;
+}
+
 .admin-page {
   display: -webkit-box;
   display: -ms-flexbox;

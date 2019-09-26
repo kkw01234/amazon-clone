@@ -18,11 +18,11 @@ export class BottomCard{
                             height:${this.height}rem">
                             <div class="bottom-main">
                                 <div class="bottom-title" style="background-color:${this.color}">
-                                    ${this.title}
-                                </div>
-                                <div class="bottom-head">
                                     ${this.head}
                                 </div>
+                                <!--<div class="bottom-head">
+                                    ${this.title}
+                                </div>-->
                                 <div class="bottom-content">
                                     ${this.content}
                                 </div>

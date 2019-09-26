@@ -84,11 +84,9 @@ class CarouselDAO {
         this.name = name.toUpperCase();
     }
     createTable() {
-        //console.log(carouselQuery[this.name].CREATE_TABLE);
         DBConnect.query(carouselQuery[this.name].CREATE_TABLE);
     }
     async insert(carousel) {
-        // if(this.object.keys().contains('')) return false;
         try {
             const result = await DBConnect.query(carouselQuery[this.name].INSERT, Object.values(carousel));
             return result;
@@ -101,10 +99,7 @@ class CarouselDAO {
         return await DBConnect.query(carouselQuery[this.name].FINDALL);
     }
     async delete(index){
-        console.log(this.name);
-        console.log(carouselQuery[this.name].DELETE);
         const result = await DBConnect.query(carouselQuery[this.name].DELETE,[index]);
-        console.log(result);
         return result;
     }
 
@@ -135,7 +130,6 @@ class MiniCarousel extends CarouselDAO {
     constructor() {
         super('MINICAROUSEL');
     }
-   
 }
 
 const mainCardCarousel = new MainCardCarouselDAO();
