@@ -16,7 +16,7 @@ export const managingMain = {
         .then(this.render.bind(this));
     },
     makeBottomObjects(bottoms){
-        this.bottomTableHead = [...Object.keys(bottoms[0]),"Modify"];
+        this.bottomTableHead = ["번호","제목","헤더","내용","URL내용","URL링크","이미지","색상","순서","수정/삭제"];
         return bottoms.reduce((prev,bottoms)=>{
             prev.push(new Information(bottoms,"bottom"));
             return prev;

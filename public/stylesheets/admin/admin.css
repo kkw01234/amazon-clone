@@ -5,10 +5,10 @@ table {
 table thead tr {
   border-bottom: 0.1rem solid black;
   background-color: #eeeeee;
+  font-size: 1.2rem;
 }
 
 table thead th {
-  min-width: 10%;
   white-space: nowrap;
 }
 
@@ -22,6 +22,18 @@ table tbody td {
   vertical-align: middle;
 }
 
+table .content {
+  min-width: 20rem;
+}
+
+table .link {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 5rem;
+  max-width: 10rem;
+}
+
 .admin-page {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -32,7 +44,7 @@ table tbody td {
 }
 
 .admin-nav {
-  width: 20%;
+  min-width: 10%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -44,7 +56,6 @@ table tbody td {
 
 .admin-main {
   margin: 1rem;
-  width: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

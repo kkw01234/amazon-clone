@@ -23,7 +23,7 @@ export class Table{
     }
     addTableHead(){
         return this.tableHead.reduce((prev,curr)=>{
-            prev += `<th>${curr}</th>`;
+            prev += `<th class="${curr}">${curr}</th>`;
             return prev;
         },"");
     }

@@ -11,8 +11,11 @@ export class Information {
             if (i === "image") {
                 rendering += `<td class="${i}-${this.id} ${i}"><img src="${this.obj[i]}" style="width:10rem;height:5rem;"></td>`;
                 continue;
+            }else if(i === 'link'){
+                rendering += `<td class="${i}-${this.id} ${i}" title="${this.obj[i]}"><a href="${this.obj[i]}">${this.obj[i]}</a></td>`;
+                continue;
             }
-            rendering += `<td class="${i}-${this.id} ${i}">${this.obj[i]}</td>`;
+            rendering += `<td class="${i}-${this.id} ${i}" title="${this.obj[i]}">${this.obj[i]}</td>`;
         }
         if (this.name === "user") {
             rendering += `<td>
