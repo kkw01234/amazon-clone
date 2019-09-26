@@ -27,17 +27,15 @@ export class UserInformation {
         const userAuthChange = $(`.btn-auth-${this.user.id}-change`);
         userAuthChange.addEventListener('click', () => {
             const authChange = $(`select[name=auth-${this.user.id}-change]`).value;
-            console.log(authChange);
             //fetch
             if(authChange === '') {
                 alert('권한을 다시 선택해주세요');
                 return;
             }
-            fetch('/admin/auth-change', {
+            fetch(`/admin/auth-change/${this.user.id}`, {
                 method: `post`,
                 body: JSON.stringify({
-                        id : this.user.id,
-                        authChange : authChange
+                        change_authority_name : authChange
                 }),
                 headers: {
                     "Content-Type": "application/json"
@@ -45,14 +43,13 @@ export class UserInformation {
             }).then(res =>{
                 return res.json();
             }).then(data=>{
-                //data.result
-                if(!data.result.result){
+                if(!data.result){
                     alert('다시 한번 눌러주세요');
-                    return;
+                    return; 
                 }
-                alert(`${data.result.id}님의 권한이 수정되었습니다.`);
-                const authority_level = $(`authority_level-${data.result.id}`);
-                authority_level.value = data.result.authority_level;
+                alert(`${data.id}님의 권한이 수정되었습니다.`);
+                const authority = $(`.authority-${data.id}`);
+                authority.innerHTML = data.authority_name;
             });
         });
     }

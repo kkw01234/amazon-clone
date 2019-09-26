@@ -10,8 +10,23 @@ router.get('/findalluser',async function(req, res, next) {
         next(e);
     }
 });
+router.get('/findallauthoritynames', async function(req,res,next){
+    try{
+        const authorityNames = await UserDAO.findAllAuthorityNames();
+        res.send(authorityNames);
+    }catch(e){
+        next(e);
+    }
+});
 
-router.get('/authoritychange/:id', isLoggIn, isAdmin,function(req,res,next){
+router.post('/auth-change/:id', async function(req,res,next){
+    console.log(req.body);
+    try{
+        const result = await UserDAO.updateUsersAuthority(req.params.id,req.body.change_authority_name);
+        res.send({result, id : req.params.id, authority_name : req.body.change_authority_name});
+    }catch(e){ 
+        next(e);
+    }
 });
 
 
