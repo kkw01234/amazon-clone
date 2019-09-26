@@ -7,7 +7,7 @@ export class Table{
         this.userObjs = userObjs || [];
     }
     render(){
-        return /*html */`<div class="${this.name}-card">
+        return /*html */`<div class="${this.name}-table">
                             <table>
                                 <thead>
                                     <tr>

@@ -1,5 +1,7 @@
 import {UserInformation} from "./usercard";
 import {Table} from "./usermanage";
+import {header} from "../header";
+import {nav} from "../nav";
 import {$,$$} from "../utils"; 
 const admin = {
     init(){
@@ -26,7 +28,15 @@ const admin = {
                                 userObjs});
     },
     render(){
-        this.root.innerHTML = this.table.render();
+        this.root.innerHTML = /*html*/`
+            ${header.render()}
+            <div class="admin-page">
+                ${nav.render('admin')}
+                <div class="admin-main">
+                    ${this.table.render()}
+                </div>
+            </div>
+        `;
         this.table.addUserInformation();
     },
     
