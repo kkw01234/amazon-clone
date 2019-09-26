@@ -13,16 +13,25 @@ class CrudForm{
 
    }
    upload(){
+       this.image = $('input[name=image-file]');
+       this.head = $('input[name=head]');
+       this.color = $('input[name=color]');
+       this.title = $('input[name=title]');
+       this.content = $('textarea[name=content]');
+       this.urlContent = $('input[name=url-content]');
+       this.link = $('input[name=link]');
        const formdata = new FormData();
-       const image = document.querySelector('input[name=image-file]');
-       formdata.append("image",image.files[0]);
-       console.log(image.files[0])
+       console.log(this.image.files[0]);
+       formdata.append("image",this.image.files[0]);
+       formdata.append("head",this.head.value);
+       formdata.append("color",this.color.value);
+       formdata.append('title',this.title.value);
+       formdata.append('content',this.content.value);
+       formdata.append('url_content',this.urlContent.value);
+       formdata.append('link',this.link.value);
        fetch('/adminpage/write/upload',{
            method : `post`,
-           body : formdata,
-        //    headers : {
-        //        "Content-Type" : `multipart/form-data`
-        //    }
+           body : formdata
        }).then(res=>{
            console.log(res);
        })
