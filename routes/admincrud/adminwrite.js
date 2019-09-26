@@ -21,7 +21,7 @@ router.get('/setoption',async (req,res,next)=>{
 });
 router.post('/upload',upload.single('image'),async (req,res,next)=>{
     const {title,head,content,url_content,link,color} = req.body;
-    const image = req.file.filename;
+    const image = "/static_root/"+req.file.filename;
     const result = await bottomCarousel.insert({
         title,
         head,
