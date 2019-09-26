@@ -1,8 +1,8 @@
 import {$,$$} from "../utils"; 
 import {header} from "../header";
 import {nav} from "../nav";
-import { UserInformation } from "./usercard";
-import { Table } from "./usermanage";
+import { Information } from "./information";
+import { Table } from "./table";
 
 export const managingMini = {
     init(){
@@ -11,18 +11,18 @@ export const managingMini = {
             return res.json();
         }).then((result)=>{
             return result;
-        }).then(this.makeBottomObjects.bind(this))
-        .then(this.makeBottomTable.bind(this))
+        }).then(this.makeMiniObjects.bind(this))
+        .then(this.makeMiniTable.bind(this))
         .then(this.render.bind(this));
     },
-    makeBottomObjects(bottoms){
+    makeMiniObjects(bottoms){
         this.bottomTableHead = [...Object.keys(bottoms[0]),"Modify"];
         return bottoms.reduce((prev,bottoms)=>{
-            prev.push(new UserInformation(bottoms,"mini"));
+            prev.push(new Information(bottoms,"mini"));
             return prev;
         },[]);
     },
-    makeBottomTable(bottomObjs){
+    makeMiniTable(bottomObjs){
         this.table = new Table({name : "mini",
                                 tableHead : this.bottomTableHead,
                                 objs : bottomObjs});

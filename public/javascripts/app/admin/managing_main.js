@@ -1,8 +1,8 @@
 import {$,$$} from "../utils"; 
 import {header} from "../header";
 import {nav} from "../nav";
-import { UserInformation } from "./usercard";
-import { Table } from "./usermanage";
+import { Information } from "./information";
+import { Table } from "./table";
 
 export const managingMain = {
     init(){
@@ -18,7 +18,7 @@ export const managingMain = {
     makeBottomObjects(bottoms){
         this.bottomTableHead = [...Object.keys(bottoms[0]),"Modify"];
         return bottoms.reduce((prev,bottoms)=>{
-            prev.push(new UserInformation(bottoms,"bottom"));
+            prev.push(new Information(bottoms,"bottom"));
             return prev;
         },[]);
     },

@@ -1,5 +1,5 @@
-import {UserInformation} from "./usercard";
-import {Table} from "./usermanage";
+import {Information} from "./information";
+import {Table} from "./table";
 import {header} from "../header";
 import {nav} from "../nav";
 import {$,$$} from "../utils"; 
@@ -18,7 +18,7 @@ export const managingUser = {
     makeUserObject(users){
         this.userTableHead = [...Object.keys(users[0]),"change_authority"];
         return users.reduce((prev,user)=>{
-            prev.push(new UserInformation(user,"user"));
+            prev.push(new Information(user,"user"));
             return prev;
         },[]);
     },

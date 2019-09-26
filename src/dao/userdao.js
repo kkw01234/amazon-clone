@@ -49,14 +49,6 @@ const UserDAO = {
         return await DBConnect.query(userQuery.FINDALLUSER);
     },
     async findUserForIdAndPassword(id, password){
-        // return new Promise((resolve,reject)=>{
-        //     DBConnect.query(userQuery.FINDUSERFORIDANDPASSWORD,[id,password]).then(res=>{
-        //         if(res.length > 0){
-        //             resolve(res);
-        //         }else
-        //             resolve(false);
-        //     });
-        // })
         const users = await DBConnect.query(userQuery.FINDUSERFORIDANDPASSWORD,[id,password]);
         return users.length > 0 ? users[0] : false;
     },
