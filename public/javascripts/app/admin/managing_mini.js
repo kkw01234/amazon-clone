@@ -4,10 +4,10 @@ import {nav} from "../nav";
 import { UserInformation } from "./usercard";
 import { Table } from "./usermanage";
 
-export const managingMain = {
+export const managingMini = {
     init(){
         this.root = $('#root');
-        fetch('/admin/findallbottom').then(async res=>{
+        fetch('/admin/findallmini').then(async res=>{
             return res.json();
         }).then((result)=>{
             return result;
@@ -18,12 +18,12 @@ export const managingMain = {
     makeBottomObjects(bottoms){
         this.bottomTableHead = [...Object.keys(bottoms[0]),"Modify"];
         return bottoms.reduce((prev,bottoms)=>{
-            prev.push(new UserInformation(bottoms,"bottom"));
+            prev.push(new UserInformation(bottoms,"mini"));
             return prev;
         },[]);
     },
     makeBottomTable(bottomObjs){
-        this.table = new Table({name : "bottom",
+        this.table = new Table({name : "mini",
                                 tableHead : this.bottomTableHead,
                                 objs : bottomObjs});
     },

@@ -13,7 +13,8 @@ const carouselQuery = {
         INSERT: /*SQL*/`
             INSERT INTO main_card_carousel VALUES(?,?,?);
     `,
-        FINDTITLE : `SELECT title FROM main_card_carousel`
+        FINDTITLE : `SELECT title FROM main_card_carousel`,
+
     },
 
     BOTTOMCAROUSEL: {
@@ -34,6 +35,9 @@ const carouselQuery = {
         `,
         INSERT: /*SQL*/`
         INSERT INTO bottom_carousel VALUES(null,?,?,?,?,?,?,?);
+        `,
+        DELETE : /*SQL */`
+            DELETE FROM bottom_carousel WHERE bottom_index = ?
         `
     },
 
@@ -50,6 +54,9 @@ const carouselQuery = {
         `,
         INSERT: /*SQL*/`
             INSERT INTO mini_carousel VALUES(null,?,?);
+        `,
+        DELETE : /*SQL */`
+            DELETE FROM mini_carousel WHERE mini_index = ?
         `
     },
 
@@ -93,6 +100,13 @@ class CarouselDAO {
     async findAll(){
         return await DBConnect.query(carouselQuery[this.name].FINDALL);
     }
+    async delete(index){
+        console.log(this.name);
+        console.log(carouselQuery[this.name].DELETE);
+        const result = await DBConnect.query(carouselQuery[this.name].DELETE,[index]);
+        console.log(result);
+        return result;
+    }
 
 }
 
@@ -121,6 +135,7 @@ class MiniCarousel extends CarouselDAO {
     constructor() {
         super('MINICAROUSEL');
     }
+   
 }
 
 const mainCardCarousel = new MainCardCarouselDAO();
