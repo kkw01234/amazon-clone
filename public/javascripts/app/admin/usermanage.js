@@ -30,7 +30,6 @@ export class Table{
     addUserInformation(){
         const tbody = $(`.${this.name}-tbody`);
         tbody.innerHTML = this.userObjs.reduce((prev, curr)=>{
-            console.log(curr.render());
             prev += curr.render();
             return prev;
         },"");
