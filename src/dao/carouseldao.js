@@ -13,7 +13,7 @@ const carouselQuery = {
         INSERT: /*SQL*/`
             INSERT INTO main_card_carousel VALUES(?,?,?);
     `,
-        FINDTITLE : `SELECT * FROM main_card_carousel WHERE title=?`
+        FINDTITLE : `SELECT title FROM main_card_carousel`
     },
 
     BOTTOMCAROUSEL: {
@@ -77,7 +77,7 @@ class CarouselDAO {
         this.name = name.toUpperCase();
     }
     createTable() {
-        console.log(carouselQuery[this.name].CREATE_TABLE);
+        //console.log(carouselQuery[this.name].CREATE_TABLE);
         DBConnect.query(carouselQuery[this.name].CREATE_TABLE);
     }
     async insert(carousel) {
@@ -101,6 +101,10 @@ class CarouselDAO {
 class MainCardCarouselDAO extends CarouselDAO {
     constructor() {
         super('MAINCARDCAROUSEL');
+    }
+    async findTitle(){
+        const result = await DBConnect.query(carouselQuery.MAINCARDCAROUSEL.FINDTITLE);
+        return result;
     }
 }
 class BottomCarouselDAO extends CarouselDAO {

@@ -8,9 +8,21 @@ class CrudForm{
         button.addEventListener('click',function(){
             this.upload();
         }.bind(this));
+        this.setOption();
    }
    render(){
-
+   }
+   setOption(){
+       fetch('/adminpage/write/setoption').then(res=>{
+            return res.json();
+       }).then(result=>{
+            const option = $('select[name=title]');
+            option.innerHTML = result.reduce((prev,curr)=>{
+                prev+=`<option value="${curr.title}">${curr.title}</option>`;
+                return prev;
+            },"");
+       })
+       
    }
    upload(){
        this.image = $('input[name=image-file]');
