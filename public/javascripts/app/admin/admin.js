@@ -38,6 +38,7 @@ const admin = {
             </div>
         `;
         this.table.addUserInformation();
+        this.table.enrollEvent();
     },
     
 }

@@ -34,4 +34,10 @@ export class Table{
             return prev;
         },"");
     }
+    enrollEvent(){
+        if(this.userObjs.length <= 0) return;
+        this.userObjs.forEach(value=>{
+            value.enrollEvent();
+        });
+    }
 }
