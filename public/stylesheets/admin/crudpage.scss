@@ -1,0 +1,24 @@
+.insert-page{
+    display: flex;
+    flex-direction: column;
+    .insert-form{
+        display: flex;
+        margin : 1rem;
+        .right-form{
+            display: flex;
+            flex-direction: column;
+        }
+        .flex{
+            display: flex;
+        }
+        input{
+            margin : 0.2rem;
+        }
+        textarea{
+            margin : 0.2rem;
+            min-width : 40rem;
+            min-height: 10rem;
+            
+        }
+    }
+}

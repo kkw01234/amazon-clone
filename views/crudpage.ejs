@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href="/stylesheets/header.css"/>
+    <link rel='stylesheet' href="/stylesheets/style.css"/>
+    <link rel='stylesheet' href="/stylesheets/nav.css"/>
+    <link rel='stylesheet' href="/stylesheets/admin/crudpage.css"/>
+    <link rel='stylesheet' href="/stylesheets/admin/admin.css"/>
+</head>
+<body>
+    <div id="root">
+        <div class="insert-page">
+           <div class="select-type">
+               <select>
+                   <option>메인</option>
+                   <option>하단</option>
+                   <option>미니</option>
+               </select>
+           </div>
+           <div class="insert-form">
+                <div class="left-form">
+                    <p>이미지 선택</p>
+                    <input type="file" name="image-file">
+                </div>
+                <div class="right-form">
+                    <!--오른쪽-->
+                    <div class="flex">
+                        <span>머리말 : <input type="text" name="head"></span>
+                        <span>색상 : <input type="text" name="color"></span>
+                    </div>
+                    <span>제목 : <input type="text" name="title"></span>
+                    <span>내용 :<textarea name="content"></textarea></span>
+                    <div class="flex">
+                        주소내용 : <span><input type="text" name="url-content"></span>
+                        주소 : <span><input type="text" name="link"></span>
+                    </div>
+                </div>
+           </div>
+           <button class="insert-button">버튼</button>
+        </div>
+    </div>
+</body>
+<script src="/javascripts/crudformpage.bundle.js"></script>
+
+</html>

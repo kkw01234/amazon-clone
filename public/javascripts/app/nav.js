@@ -6,9 +6,9 @@ export const nav={
     adminpageRender(){
         return /*html*/`
                 <nav class='admin-nav'>
-                    <a>전체 사용자 조회</a>
-                    <a>메인(하단) 카로셀 변경</a>
-                    <a>미니 카로셀 변경</a>
+                    <a href="/adminpage/user">전체 사용자 조회</a>
+                    <a href="/adminpage/main">메인(하단) 카로셀 변경</a>
+                    <a href="/adminpage/mini">미니 카로셀 변경</a>
                 </nav>
             `;
     },
