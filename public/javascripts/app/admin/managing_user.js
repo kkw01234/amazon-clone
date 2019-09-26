@@ -18,14 +18,14 @@ export const managingUser = {
     makeUserObject(users){
         this.userTableHead = [...Object.keys(users[0]),"change_authority"];
         return users.reduce((prev,user)=>{
-            prev.push(new UserInformation(user));
+            prev.push(new UserInformation(user,"user"));
             return prev;
         },[]);
     },
     makeUserTable(userObjs){
         this.table = new Table({name : "user",
                                 tableHead : this.userTableHead,
-                                userObjs});
+                                objs : userObjs});
     },
     render(){
         this.root.innerHTML = /*html*/`

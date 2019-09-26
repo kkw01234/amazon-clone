@@ -1,13 +1,13 @@
-.user-table table {
+table {
   border-collapse: collapse;
 }
 
-.user-table table thead tr {
+table thead tr {
   border-bottom: 0.1rem solid black;
   background-color: #eeeeee;
 }
 
-.user-table table tbody tr {
+table tbody tr {
   text-align: center;
 }
 

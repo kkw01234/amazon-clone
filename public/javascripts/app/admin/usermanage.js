@@ -1,10 +1,10 @@
 
 import {$,$$} from '../utils';
 export class Table{
-    constructor({name,tableHead,userObjs}){
+    constructor({name,tableHead,objs}){
         this.name = name || "none";
         this.tableHead = tableHead || ["id"];
-        this.userObjs = userObjs || [];
+        this.objs = objs || [];
     }
     render(){
         return /*html */`<div class="${this.name}-table">
@@ -29,14 +29,14 @@ export class Table{
     }
     addUserInformation(){
         const tbody = $(`.${this.name}-tbody`);
-        tbody.innerHTML = this.userObjs.reduce((prev, curr)=>{
+        tbody.innerHTML = this.objs.reduce((prev, curr)=>{
             prev += curr.render();
             return prev;
         },"");
     }
     enrollEvent(){
-        if(this.userObjs.length <= 0) return;
-        this.userObjs.forEach(value=>{
+        if(this.objs.length <= 0) return;
+        this.objs.forEach(value=>{
             value.enrollEvent();
         });
     }

@@ -11,7 +11,6 @@ const page = {
 }
 export const admin = {
     init(){
-        console.log(window.location.pathname);
         page[window.location.pathname]();
     }
 }

@@ -1,23 +1,32 @@
 import { $ } from "../utils";
 export class UserInformation {
-    constructor(user) {
+    constructor(user, name = "none") {
         this.user = user;
+        this.name = name;
     }
     render() {
         let rendering = `<tr>`;
         for (let i in this.user) {
+            if(i === "image"){
+                rendering += `<td class="${i}-${this.user.id}"><img src="${this.user[i]}" style="width:10rem;height:5rem;"></td>`;
+                continue;
+            }
             rendering += `<td class="${i}-${this.user.id}">${this.user[i]}</td>`;
         }
-        rendering += `<td>
-                        <div class="change-authority" style="display:flex">
-                            <select name="auth-${this.user.id}-change">
-                                <option value=""></option>
-                                <option value="admin">관리자</option>
-                                <option value="general">일반 사용자</option>
-                            </select>
-                            <button class="btn btn-auth-${this.user.id}-change">변경</button>
-                        </div>
-                    </td>`;
+        if(name === "user"){
+            rendering += `<td>
+            <div class="change-authority" style="display:flex">
+                <select name="auth-${this.user.id}-change">
+                    <option value=""></option>
+                    <option value="admin">관리자</option>
+                    <option value="general">일반 사용자</option>
+                </select>
+                <button class="btn btn-auth-${this.user.id}-change">변경</button>
+            </div>
+        </td>`;
+        }else{
+            rendering +=` <button class="btn btn-auth-${this.user.id}-change">변경</button>`;
+        }
         rendering+=`</tr>`;
 
 

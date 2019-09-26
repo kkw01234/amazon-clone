@@ -1,16 +1,15 @@
-.user-table{
-    table{
-        border-collapse: collapse;
-        thead{
-            tr{
-                border-bottom : 0.1rem solid black;
-                background-color :#eeeeee;
-            }
+
+table{
+    border-collapse: collapse;
+    thead{
+        tr{
+            border-bottom : 0.1rem solid black;
+            background-color :#eeeeee;
         }
-        tbody{
-            tr{
-                text-align: center;
-            }
+    }
+    tbody{
+        tr{
+            text-align: center;
         }
     }
 }

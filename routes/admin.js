@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const {isAdmin,isLoggIn} = require('./authoritycheck');
 const {UserDAO} = require('../src/dao/userdao');
+const {bottomCarousel} = require("../src/dao/carouseldao");
 router.get('/findalluser',async function(req, res, next) {
     try{
         const users = await UserDAO.findAllUser();
@@ -18,6 +19,10 @@ router.get('/findallauthoritynames', async function(req,res,next){
         next(e);
     }
 });
+router.get('/findallbottom',async function(req,res,next){
+    const bottoms = await bottomCarousel.findAll();
+    res.send(bottoms);
+})
 
 router.post('/auth-change/:id', async function(req,res,next){
     console.log(req.body);
