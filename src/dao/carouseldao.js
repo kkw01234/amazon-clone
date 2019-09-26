@@ -31,7 +31,7 @@ const carouselQuery = {
         )
         `,
         FINDALL: /*SQL*/`
-            SELECT * FROM bottom_carousel;
+            SELECT * FROM bottom_carousel, (SELECT title, sequence FROM main_card_carousel) as main where bottom_carousel.title = main.title order by main.sequence, bottom_index;
         `,
         INSERT: /*SQL*/`
         INSERT INTO bottom_carousel VALUES(null,?,?,?,?,?,?,?);

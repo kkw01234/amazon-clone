@@ -10,6 +10,7 @@ router.get('/', function(req, res, next) {
 router.get('/data/:db',async function(req,res,next){
     const db = req.params.db;
     const result = await carouselDAO[db].findAll();
+    console.log(result);
     res.send({
         result : result
     });
