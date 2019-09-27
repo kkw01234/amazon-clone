@@ -9,7 +9,7 @@ router.get('/findalluser',async function(req, res, next) {
         const users = await UserDAO.findAllUser();
         res.send({users});
     }catch(e){
-        next(e);
+        res.send({result : false});
     }
 });
 router.get('/findallauthoritynames', async function(req,res,next){
@@ -17,12 +17,16 @@ router.get('/findallauthoritynames', async function(req,res,next){
         const authorityNames = await UserDAO.findAllAuthorityNames();
         res.send(authorityNames);
     }catch(e){
-        next(e);
+        res.send({result : false});
     }
 });
 router.get('/findallbottom',async function(req,res,next){
-    const bottoms = await bottomCarousel.findAll();
-    res.send(bottoms);
+    try{
+        const bottoms = await bottomCarousel.findAll();
+        res.send(bottoms);
+    }catch(e){
+        res.send({result : false});
+    }
 });
 router.get('/findallmini',async function(req,res,next){
     const minis = await miniCarousel.findAll();
@@ -35,7 +39,7 @@ router.post('/auth-change/:id', async function(req,res,next){
         const result = await UserDAO.updateUsersAuthority(req.params.id,req.body.change_authority_name);
         res.send({result, id : req.params.id, authority_name : req.body.change_authority_name});
     }catch(e){ 
-        next(e);
+        res.send({result : false})
     }
 });
 router.post('/deletemini',async (req,res,next)=>{
@@ -48,7 +52,7 @@ router.post('/deletemini',async (req,res,next)=>{
         else
             res.send({result : false});
     }catch(e){
-        next(e);
+        res.send({result : false});
     }
 });
 router.post('/deletebottom',async (req,res,next)=>{
@@ -60,7 +64,7 @@ router.post('/deletebottom',async (req,res,next)=>{
         else
             res.send({result : false});
     }catch(e){
-        next(e);
+        res.send({result : false})
     }
 });
 

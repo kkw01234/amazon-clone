@@ -14,8 +14,9 @@ const loginpageRouter = require('./routes/loginpage');
 const adminpageRouter = require('./routes/adminpage');
 const adminRouter = require('./routes/admin');
 const authRouter = require('./routes/auth');
-
-const FileStore = require('session-file-store')(session);
+const RedisStore = require('connect-redis')(session);
+const redis = require('./redis');
+// const FileStore = require('session-file-store')(session);
 const app = express();
 const sess_option = {
   retires : 5,
@@ -42,6 +43,13 @@ app.use(session({
     secure : false,
     httpOnly : true
   },
+  // store : new RedisStore({
+  //   client : redis,
+  //   host : '106.10.35.161',
+  //   port : 6379,
+  //   prefix : session,
+  //   db : 0,
+  // })
   // store : new FileStore(sess_option),
 }));
 
