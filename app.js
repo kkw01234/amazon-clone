@@ -1,4 +1,4 @@
-const cors = require('cors');
+// const cors = require('cors');
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -16,7 +16,7 @@ const adminRouter = require('./routes/admin');
 const authRouter = require('./routes/auth');
 // const RedisStore = require('connect-redis')(session);
 // const redis = require('./redis');
-// const FileStore = require('session-file-store')(session);
+const FileStore = require('session-file-store')(session);
 const app = express();
 const sess_option = {
   retires : 5,
@@ -24,7 +24,7 @@ const sess_option = {
   maxTimeout : 150
 }
 // view engine setup
-app.use(cors());
+// app.use(cors());
 require('dotenv').config();
 app.disable('etag');
 app.set('views', path.join(__dirname, 'views'));
@@ -50,7 +50,7 @@ app.use(session({
   //   prefix : session,
   //   db : 0,
   // })
-  // store : new FileStore(sess_option),
+  store : new FileStore(),
 }));
 
 app.use(passport.initialize());
@@ -79,7 +79,7 @@ app.use(function (err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
-  res.status(err.status || 500);
+  res.status(err.status || 500).send("Error");
   res.render('error');
 });
 

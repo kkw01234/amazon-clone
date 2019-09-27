@@ -9,7 +9,6 @@ module.exports = (passport) => {
         done(null, user); 
     });
     passport.deserializeUser((user, done)=>{
-        console.log("deserializeUser")
         done(null, user);
     });
     local(passport);
