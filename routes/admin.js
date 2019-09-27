@@ -3,7 +3,7 @@ var router = express.Router();
 const {isAdmin,isLoggIn} = require('./authoritycheck');
 const {UserDAO} = require('../src/dao/userdao');
 const {bottomCarousel,miniCarousel} = require("../src/dao/carouseldao");
-//router.use(isLoggIn,isAdmin);
+router.use(isLoggIn,isAdmin);
 router.get('/findalluser',async function(req, res, next) {
     try{
         const users = await UserDAO.findAllUser();

@@ -4,7 +4,7 @@ const {isAdmin,isLoggIn} = require('./authoritycheck');
 const adminread = require('./admincrud/adminread');
 const adminwrite = require('./admincrud/adminwrite');
 
-//router.use(isLoggIn,isAdmin);
+router.use(isLoggIn,isAdmin);
 router.use('/read', adminread);
 router.use('/write', adminwrite);
 router.get('/', function(req, res, next) {
