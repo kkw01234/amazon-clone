@@ -27,7 +27,7 @@
   "devDependencies": {
     "nodemon": "^1.19.2",
     "webpack": "^4.40.2",
-    "webpack-cli": "^3.3.9"
+    "webpack-cli": "^3.3.12"
   },
   "script": {
     "build": "node_modules/.bin/webpack"
